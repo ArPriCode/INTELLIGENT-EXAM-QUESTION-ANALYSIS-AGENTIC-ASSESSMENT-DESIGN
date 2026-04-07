@@ -46,8 +46,21 @@ st.markdown("""
 @st.cache_resource
 def load_models():
     try:
-        model = joblib.load('models/difficulty_model.pkl')
-        vectorizer = joblib.load('models/tfidf_vectorizer.pkl')
+        # Check if models directory exists
+        if not os.path.exists('models'):
+            os.makedirs('models')
+            return None, None
+            
+        # Try to load models
+        if os.path.exists('models/difficulty_model.pkl') and os.path.exists('models/tfidf_vectorizer.pkl'):
+            model = joblib.load('models/difficulty_model.pkl')
+            vectorizer = joblib.load('models/tfidf_vectorizer.pkl')
+            return model, vectorizer
+        else:
+            return None, None
+    except Exception as e:
+        st.error(f"Error loading models: {str(e)}")
+        return None, None
         return model, vectorizer
     except:
         return None, None
