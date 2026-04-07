@@ -1,10 +1,10 @@
-# 🤝 Contributing to Exam Question Analysis
+#  Contributing to Exam Question Analysis
 
 Thank you for your interest in contributing! This document provides guidelines for contributing to the project.
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
@@ -17,7 +17,7 @@ Thank you for your interest in contributing! This document provides guidelines f
 
 ---
 
-## 📜 Code of Conduct
+##  Code of Conduct
 
 ### Our Pledge
 
@@ -40,7 +40,7 @@ We pledge to make participation in our project a harassment-free experience for 
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -64,7 +64,7 @@ We pledge to make participation in our project a harassment-free experience for 
 
 ---
 
-## 💻 Development Setup
+##  Development Setup
 
 ### 1. Fork the Repository
 
@@ -111,7 +111,7 @@ streamlit run app.py
 
 ---
 
-## 🔧 How to Contribute
+##  How to Contribute
 
 ### Types of Contributions
 
@@ -173,7 +173,7 @@ streamlit run app.py
 
 ---
 
-## 📝 Coding Standards
+##  Coding Standards
 
 ### Python Style Guide
 
@@ -275,7 +275,7 @@ def train_model(data_path, test_size=0.2):
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ### Writing Tests
 
@@ -329,7 +329,7 @@ pytest --cov=. --cov-report=term-missing
 
 ---
 
-## 🔀 Pull Request Process
+##  Pull Request Process
 
 ### Before Submitting
 
@@ -382,7 +382,7 @@ Add screenshots
 
 ---
 
-## 🐛 Issue Guidelines
+##  Issue Guidelines
 
 ### Creating Issues
 
@@ -439,7 +439,7 @@ Any other information
 
 ---
 
-## 🎯 Development Priorities
+##  Development Priorities
 
 ### High Priority
 - Bug fixes
@@ -460,7 +460,7 @@ Any other information
 
 ---
 
-## 📚 Resources
+##  Resources
 
 ### Learning Resources
 - [Python PEP 8](https://pep8.org/)
@@ -475,7 +475,7 @@ Any other information
 
 ---
 
-## 💬 Communication
+##  Communication
 
 ### Channels
 - **GitHub Issues**: Bug reports, feature requests
@@ -489,7 +489,7 @@ Any other information
 
 ---
 
-## 🏆 Recognition
+##  Recognition
 
 Contributors will be:
 - Listed in README.md
@@ -498,7 +498,7 @@ Contributors will be:
 
 ---
 
-## 📞 Contact
+##  Contact
 
 - **Project Lead**: ArPriCode Team
 - **Email**: contact@arpricode.dev
@@ -506,7 +506,7 @@ Contributors will be:
 
 ---
 
-## 📄 License
+##  License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
 

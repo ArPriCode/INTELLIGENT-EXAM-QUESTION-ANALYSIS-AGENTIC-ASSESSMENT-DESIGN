@@ -1,10 +1,10 @@
-# 🚀 Deployment Guide
+#  Deployment Guide
 
 Complete guide for deploying the Exam Question Analysis system to various platforms.
 
 ---
 
-## 📋 Pre-Deployment Checklist
+##  Pre-Deployment Checklist
 
 - [ ] All dependencies listed in `requirements.txt`
 - [ ] Models trained and saved in `models/` directory
@@ -15,13 +15,13 @@ Complete guide for deploying the Exam Question Analysis system to various platfo
 
 ---
 
-## 1️⃣ Streamlit Community Cloud
+## 1⃣ Streamlit Community Cloud
 
 ### Advantages
-- ✅ Free hosting
-- ✅ Automatic deployments from GitHub
-- ✅ Built-in SSL
-- ✅ Easy setup
+-  Free hosting
+-  Automatic deployments from GitHub
+-  Built-in SSL
+-  Easy setup
 
 ### Steps
 
@@ -66,13 +66,13 @@ python train_model.py
 
 ---
 
-## 2️⃣ Hugging Face Spaces
+## 2⃣ Hugging Face Spaces
 
 ### Advantages
-- ✅ Free GPU access
-- ✅ ML-focused community
-- ✅ Easy model sharing
-- ✅ Version control
+-  Free GPU access
+-  ML-focused community
+-  Easy model sharing
+-  Version control
 
 ### Steps
 
@@ -101,7 +101,7 @@ python train_model.py
    ```yaml
    ---
    title: Exam Question Analysis
-   emoji: 📚
+   emoji: 
    colorFrom: blue
    colorTo: purple
    sdk: streamlit
@@ -124,13 +124,13 @@ MODEL_PATH=models/
 
 ---
 
-## 3️⃣ Render
+## 3⃣ Render
 
 ### Advantages
-- ✅ Free tier available
-- ✅ Automatic HTTPS
-- ✅ Custom domains
-- ✅ Database support
+-  Free tier available
+-  Automatic HTTPS
+-  Custom domains
+-  Database support
 
 ### Steps
 
@@ -175,13 +175,13 @@ MODEL_PATH=models/
 
 ---
 
-## 4️⃣ Railway
+## 4⃣ Railway
 
 ### Advantages
-- ✅ Simple deployment
-- ✅ Free tier
-- ✅ Database integration
-- ✅ Auto-scaling
+-  Simple deployment
+-  Free tier
+-  Database integration
+-  Auto-scaling
 
 ### Steps
 
@@ -212,7 +212,7 @@ MODEL_PATH=models/
 
 ---
 
-## 5️⃣ Docker Deployment
+## 5⃣ Docker Deployment
 
 ### Create Dockerfile
 
@@ -270,7 +270,7 @@ services:
 
 ---
 
-## 6️⃣ AWS EC2
+## 6⃣ AWS EC2
 
 ### Steps
 
@@ -321,7 +321,7 @@ services:
 
 ---
 
-## 🔒 Security Best Practices
+##  Security Best Practices
 
 ### 1. Environment Variables
 Never commit sensitive data. Use environment variables:
@@ -365,7 +365,7 @@ def validate_question(text):
 
 ---
 
-## 📊 Monitoring
+##  Monitoring
 
 ### Streamlit Analytics
 
@@ -398,7 +398,7 @@ except Exception as e:
 
 ---
 
-## 🔄 CI/CD Pipeline
+##  CI/CD Pipeline
 
 ### GitHub Actions
 
@@ -437,7 +437,7 @@ jobs:
 
 ---
 
-## 📝 Post-Deployment
+##  Post-Deployment
 
 ### 1. Test Application
 - [ ] All pages load correctly
@@ -459,7 +459,7 @@ jobs:
 
 ---
 
-## 🆘 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -483,7 +483,7 @@ python train_model.py
 
 ---
 
-## 📞 Support
+##  Support
 
 For deployment issues:
 - Check platform documentation
@@ -493,4 +493,4 @@ For deployment issues:
 
 ---
 
-**Happy Deploying! 🚀**
+**Happy Deploying! **

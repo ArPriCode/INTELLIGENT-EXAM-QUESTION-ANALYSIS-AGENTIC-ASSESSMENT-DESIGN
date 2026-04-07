@@ -1,10 +1,10 @@
-# 🔌 API Documentation
+#  API Documentation
 
 Complete API reference for the Exam Question Analysis system.
 
 ---
 
-## 📋 Overview
+##  Overview
 
 This document provides detailed information about the internal APIs and functions used in the system.
 
@@ -86,7 +86,7 @@ def predict_difficulty(question_text, model, vectorizer):
 
 ---
 
-## 📊 Data Processing API
+##  Data Processing API
 
 ### Load Dataset
 
@@ -106,10 +106,10 @@ def load_data(filepath='question_ans_analysis.csv'):
     """
     try:
         df = pd.read_csv(filepath)
-        print(f"✅ Loaded {len(df)} questions")
+        print(f" Loaded {len(df)} questions")
         return df
     except FileNotFoundError:
-        print(f"❌ File not found: {filepath}")
+        print(f" File not found: {filepath}")
         return None
 ```
 
@@ -143,7 +143,7 @@ def preprocess_text(text):
 
 ---
 
-## 🎓 Training API
+##  Training API
 
 ### Train Model
 
@@ -242,7 +242,7 @@ def calculate_metrics(y_true, y_pred):
 
 ---
 
-## 🎨 Streamlit UI API
+##  Streamlit UI API
 
 ### Display Results
 
@@ -279,7 +279,7 @@ def display_prediction_results(prediction, probability, question_text):
 
 ---
 
-## 🔄 Batch Processing API
+##  Batch Processing API
 
 ### Batch Predict
 
@@ -321,7 +321,7 @@ def batch_predict(questions, model, vectorizer):
 
 ---
 
-## 💾 Model Persistence API
+##  Model Persistence API
 
 ### Save Model
 
@@ -346,16 +346,16 @@ def save_model(model, vectorizer, model_path='models/'):
     try:
         joblib.dump(model, f'{model_path}/difficulty_model.pkl')
         joblib.dump(vectorizer, f'{model_path}/tfidf_vectorizer.pkl')
-        print("✅ Models saved successfully")
+        print(" Models saved successfully")
         return True
     except Exception as e:
-        print(f"❌ Error saving models: {e}")
+        print(f" Error saving models: {e}")
         return False
 ```
 
 ---
 
-## 🔍 Utility Functions
+##  Utility Functions
 
 ### Get Question Statistics
 
@@ -385,7 +385,7 @@ def get_question_stats(question_text):
 
 ---
 
-## 📊 Response Formats
+##  Response Formats
 
 ### Standard Response
 
@@ -448,7 +448,7 @@ def authenticate_request(api_key):
 
 ---
 
-## 📝 Usage Examples
+##  Usage Examples
 
 ### Complete Workflow
 
@@ -478,7 +478,7 @@ print(f"Word count: {stats['word_count']}")
 
 ---
 
-## 🐛 Error Handling
+##  Error Handling
 
 ### Common Errors
 
@@ -517,7 +517,7 @@ def safe_predict(question_text, model, vectorizer):
 
 ---
 
-## 📞 Support
+##  Support
 
 For API questions or issues:
 - Open GitHub issue
