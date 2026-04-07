@@ -912,7 +912,7 @@ I hereby declare that:
 
 **Student Name**: Arun Kumar Giri
 
-**Roll Number**: [Your Roll Number]
+**Roll Number**: [2401010099]
 
 **Date**: March 2, 2026
 
@@ -920,7 +920,6 @@ I hereby declare that:
 
 **Institution**: NST Sonipat
 
-**Signature**: _________________
 
 ---
 
