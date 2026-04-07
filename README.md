@@ -19,7 +19,7 @@
 
 **GitHub Repository**: [https://github.com/ArPriCode/INTELLIGENT-EXAM-QUESTION-ANALYSIS-AGENTIC-ASSESSMENT-DESIGN](https://github.com/ArPriCode/INTELLIGENT-EXAM-QUESTION-ANALYSIS-AGENTIC-ASSESSMENT-DESIGN)
 
-**Project Documentation**: [https://docs.google.com/document/d/1LRctuu2P9yFw6RQKCJO0vOb89xWeLaMxcevKJkV_lJA/edit?tab=t.0](https://docs.google.com/document/d/1LRctuu2P9yFw6RQKCJO0vOb89xWeLaMxcevKJkV_lJA/edit?tab=t.0)
+**Project Documentation**: [https://docs.google.com/document/d/1AnBYpheyPMNxgLhcVyPFYkKNQgw0D4QIhvBu9uZ2kBc/edit?tab=t.0](https://docs.google.com/document/d/1AnBYpheyPMNxgLhcVyPFYkKNQgw0D4QIhvBu9uZ2kBc/edit?tab=t.0)
 
 **Project Demo Video**: [https://drive.google.com/file/d/10V1DL63y57piQ8zQleqcvw2FvcM1xUrX/view?usp=sharing](https://drive.google.com/file/d/10V1DL63y57piQ8zQleqcvw2FvcM1xUrX/view?usp=sharing)
 
