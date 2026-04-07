@@ -1,12 +1,12 @@
 <div align="center">
 
-# 📚 Intelligent Exam Question Analysis & Agentic Assessment Design
+#  Intelligent Exam Question Analysis & Agentic Assessment Design
 
 ### *From Educational Analytics to Autonomous Assessment Design*
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.3+-orange.svg)](https://scikit-learn.org/)
+[![Python](https://img.shields.io/badge/Python-.8+-blue.svg)](https://www.python.org/downloads/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-.8+-red.svg)](https://streamlit.io/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-.+-orange.svg)](https://scikit-learn.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 **An AI-driven educational analytics system that analyzes exam questions and evolves into an agentic AI assessment design assistant.**
@@ -17,7 +17,7 @@
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Project Overview](#-project-overview)
 - [Key Features](#-key-features)
@@ -38,17 +38,17 @@
 
 ---
 
-## 🎯 Project Overview
+##  Project Overview
 
 This project implements a **two-milestone educational analytics system** that transforms from classical ML-based question analysis to an autonomous agentic AI assessment designer.
 
-### Milestone 1: ML-Based Exam Question Analytics (Current)
+### Milestone : ML-Based Exam Question Analytics (Current)
 Applies classical machine learning and NLP techniques to analyze exam questions and student responses, predicting difficulty levels and identifying learning gaps.
 
-### Milestone 2: Agentic AI Assessment Design Assistant (Planned)
+### Milestone : Agentic AI Assessment Design Assistant (Planned)
 Extends the system into an agent-based AI application using **LangGraph** that autonomously reasons about assessment quality, retrieves pedagogical best practices, and generates structured improvements.
 
-### 🎓 Educational Context
+###  Educational Context
 
 The system addresses real-world challenges in educational assessment:
 - **Difficulty Calibration**: Automatically classify questions by difficulty
@@ -59,23 +59,23 @@ The system addresses real-world challenges in educational assessment:
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-### 🔍 Question Analysis
+###  Question Analysis
 - **Difficulty Prediction**: Classify questions as Easy, Medium, or Hard
 - **Confidence Scoring**: Probability distribution across difficulty levels
 - **Multi-Subject Support**: Mathematics, Physics, Computer Science, Engineering
 - **Cognitive Level Mapping**: Bloom's taxonomy integration
 - **Readability Analysis**: Text complexity metrics
 
-### 📊 Analytics Dashboard
+###  Analytics Dashboard
 - **Real-time Predictions**: Instant difficulty assessment
 - **Visual Insights**: Interactive charts and probability distributions
 - **Batch Processing**: Analyze multiple questions simultaneously
 - **Export Functionality**: Download results as CSV
 - **Performance Metrics**: Detailed model evaluation
 
-### 🎨 User Interface
+###  User Interface
 - **Intuitive Design**: Clean, modern Streamlit interface
 - **Responsive Layout**: Works on desktop and mobile
 - **Interactive Visualizations**: Dynamic charts and graphs
@@ -91,21 +91,21 @@ The system addresses real-world challenges in educational assessment:
 
 ---
 
-## 🛠️ Technology Stack
+## 🛠 Technology Stack
 
 ### Core Technologies
 
 | Category | Technology | Purpose |
 |----------|-----------|---------|
-| **ML/NLP** | Scikit-learn 1.3+ | Machine learning algorithms |
+| **ML/NLP** | Scikit-learn .+ | Machine learning algorithms |
 | **Vectorization** | TF-IDF | Text feature extraction |
 | **Models** | Logistic Regression, Decision Trees, Random Forest | Classification |
-| **UI Framework** | Streamlit 1.28+ | Interactive web application |
-| **Data Processing** | Pandas 2.0+, NumPy 1.24+ | Data manipulation |
-| **Model Persistence** | Joblib 1.3+ | Model serialization |
+| **UI Framework** | Streamlit .8+ | Interactive web application |
+| **Data Processing** | Pandas .0+, NumPy .4+ | Data manipulation |
+| **Model Persistence** | Joblib .+ | Model serialization |
 | **Visualization** | Matplotlib, Plotly | Data visualization |
 
-### Future Technologies (Milestone 2)
+### Future Technologies (Milestone )
 
 | Category | Technology | Purpose |
 |----------|-----------|---------|
@@ -120,18 +120,18 @@ The system addresses real-world challenges in educational assessment:
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Python .8 or higher
 - pip package manager
 - Git (for cloning repository)
 
-### Step 1: Clone Repository
+### Step : Clone Repository
 
 ```bash
 git clone https://github.com/yourusername/exam-question-analysis.git
 cd exam-question-analysis
 ```
 
-### Step 2: Create Virtual Environment (Recommended)
+### Step : Create Virtual Environment (Recommended)
 
 ```bash
 # Create virtual environment
@@ -144,7 +144,7 @@ source venv/bin/activate
 venv\Scripts\activate
 ```
 
-### Step 3: Install Dependencies
+### Step : Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -153,14 +153,14 @@ pip install -r requirements.txt
 ### Step 4: Verify Installation
 
 ```bash
-python -c "import sklearn, streamlit, pandas; print('✅ All dependencies installed!')"
+python -c "import sklearn, streamlit, pandas; print(' All dependencies installed!')"
 ```
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
-### 1️⃣ Train the Model
+###  Train the Model
 
 ```bash
 python train_model.py
@@ -169,35 +169,35 @@ python train_model.py
 **Expected Output:**
 ```
 Loading dataset...
-✅ Loaded dataset: 5000 questions
+ Loaded dataset: 5000 questions
 
 Dataset size: 5000 questions
 Difficulty distribution:
-hard      1703
-easy      1652
-medium    1645
+hard      70
+easy      65
+medium    645
 
 Training TF-IDF Vectorizer...
 Training models...
 
-Best model: Logistic Regression with accuracy 0.314
-✅ Models saved successfully!
+Best model: Logistic Regression with accuracy 0.4
+ Models saved successfully!
 ```
 
-### 2️⃣ Launch Application
+###  Launch Application
 
 ```bash
 streamlit run app.py
 ```
 
-**Access the application at:** `http://localhost:8501`
+**Access the application at:** `http://localhost:850`
 
-### 3️⃣ Analyze Questions
+###  Analyze Questions
 
-1. Navigate to **"Question Analysis"** tab
-2. Enter your exam question
-3. Add optional metadata (subject, grade, type)
-4. Click **"🔍 Analyze Question"**
+. Navigate to **"Question Analysis"** tab
+. Enter your exam question
+. Add optional metadata (subject, grade, type)
+4. Click **" Analyze Question"**
 5. View results and recommendations
 
 ---
@@ -207,12 +207,12 @@ streamlit run app.py
 ```
 exam-question-analysis/
 │
-├── 📄 app.py                          # Streamlit web application
-├── 📄 train_model.py                  # Model training pipeline
-├── 📄 requirements.txt                # Python dependencies
-├── 📄 README.md                       # Project documentation
-├── 📄 .gitignore                      # Git ignore rules
-├── 📄 setup.sh                        # Deployment setup script
+├──  app.py                          # Streamlit web application
+├──  train_model.py                  # Model training pipeline
+├──  requirements.txt                # Python dependencies
+├──  README.md                       # Project documentation
+├──  .gitignore                      # Git ignore rules
+├──  setup.sh                        # Deployment setup script
 │
 ├── 📂 models/                         # Trained models (generated)
 │   ├── difficulty_model.pkl          # Trained classifier
@@ -236,7 +236,7 @@ exam-question-analysis/
 
 ---
 
-## 📊 Data Schema
+##  Data Schema
 
 ### Input Dataset: `question_ans_analysis.csv`
 
@@ -245,27 +245,27 @@ exam-question-analysis/
 | `question_text` | string | The exam question text | "Solve the quadratic equation..." |
 | `subject` | string | Academic subject | Mathematics, Physics, CS |
 | `cognitive_level_bloom` | string | Bloom's taxonomy level | remember, understand, apply, analyze, evaluate, create |
-| `readability_score` | float | Text readability metric | 45.01 - 89.84 |
-| `word_count` | int | Number of words | 15 - 49 |
-| `sentence_count` | int | Number of sentences | 1 - 3 |
-| `time_taken_minutes` | int | Average completion time | 3 - 24 minutes |
-| `total_students_attempted` | int | Total attempts | 100 - 300 |
+| `readability_score` | float | Text readability metric | 45.0 - 89.84 |
+| `word_count` | int | Number of words | 5 - 49 |
+| `sentence_count` | int | Number of sentences |  -  |
+| `time_taken_minutes` | int | Average completion time |  - 4 minutes |
+| `total_students_attempted` | int | Total attempts | 00 - 00 |
 | `correct_attempts` | int | Successful attempts | Varies |
 | `incorrect_attempts` | int | Failed attempts | Varies |
-| `correct_percentage` | float | Success rate | 0.0 - 1.0 |
-| `learning_gap_score` | float | Knowledge gap indicator | 0.0 - 1.0 |
-| `discrimination_index` | float | Question quality metric | 0.0 - 1.0 |
+| `correct_percentage` | float | Success rate | 0.0 - .0 |
+| `learning_gap_score` | float | Knowledge gap indicator | 0.0 - .0 |
+| `discrimination_index` | float | Question quality metric | 0.0 - .0 |
 | `difficulty_label` | string | **Target variable** | easy, medium, hard |
-| `assessment_quality_score` | float | Overall quality | 0.0 - 1.0 |
+| `assessment_quality_score` | float | Overall quality | 0.0 - .0 |
 
 ### Dataset Statistics
 
 - **Total Questions**: 5,000
 - **Subjects**: 4 (Mathematics, Physics, Computer Science, Engineering Aptitude)
 - **Difficulty Distribution**: 
-  - Hard: 1,703 (34.1%)
-  - Easy: 1,652 (33.0%)
-  - Medium: 1,645 (32.9%)
+  - Hard: ,70 (4.%)
+  - Easy: ,65 (.0%)
+  - Medium: ,645 (.9%)
 
 ---
 
@@ -277,30 +277,30 @@ exam-question-analysis/
 Text Input → Preprocessing → TF-IDF Vectorization → ML Model → Prediction
 ```
 
-#### 1. Text Preprocessing
+#### . Text Preprocessing
 - Lowercase conversion
 - Special character removal
 - Tokenization
 - Stop word removal (optional)
 
-#### 2. Feature Extraction
+#### . Feature Extraction
 - **TF-IDF Vectorization**
-  - Max features: 100
-  - N-gram range: (1, 2)
+  - Max features: 00
+  - N-gram range: (, )
   - Stop words: English
 
-#### 3. Classification Models
+#### . Classification Models
 
 | Model | Algorithm | Hyperparameters |
 |-------|-----------|-----------------|
-| **Logistic Regression** | Linear classifier | max_iter=1000, random_state=42 |
-| **Decision Tree** | Tree-based classifier | random_state=42 |
-| **Random Forest** | Ensemble method | n_estimators=100, random_state=42 |
+| **Logistic Regression** | Linear classifier | max_iter=000, random_state=4 |
+| **Decision Tree** | Tree-based classifier | random_state=4 |
+| **Random Forest** | Ensemble method | n_estimators=00, random_state=4 |
 
 #### 4. Model Selection
 - Best model selected based on accuracy
 - Cross-validation for robustness
-- Stratified train-test split (80-20)
+- Stratified train-test split (80-0)
 
 ### Training Process
 
@@ -309,9 +309,9 @@ python train_model.py
 ```
 
 **Pipeline Steps:**
-1. Load dataset from CSV
-2. Map difficulty labels to numeric (easy=0, medium=1, hard=2)
-3. Split data (80% train, 20% test)
+. Load dataset from CSV
+. Map difficulty labels to numeric (easy=0, medium=, hard=)
+. Split data (80% train, 0% test)
 4. Train TF-IDF vectorizer on training data
 5. Train multiple classifiers
 6. Evaluate on test set
@@ -326,21 +326,21 @@ python train_model.py
 
 #### Via Web Interface
 
-1. **Launch Application**
+. **Launch Application**
    ```bash
    streamlit run app.py
    ```
 
-2. **Navigate to "Question Analysis"**
+. **Navigate to "Question Analysis"**
 
-3. **Enter Question Details**
+. **Enter Question Details**
    - Question text (required)
    - Subject (optional)
    - Grade level (optional)
    - Question type (optional)
 
 4. **Analyze**
-   - Click "🔍 Analyze Question"
+   - Click " Analyze Question"
    - View difficulty prediction
    - Check confidence scores
    - Read recommendations
@@ -351,7 +351,7 @@ python train_model.py
 ```
 Question: "Derive the quadratic formula from the general quadratic equation."
 Subject: Mathematics
-Grade: 12
+Grade: 
 Type: Problem Solving
 ```
 
@@ -359,10 +359,10 @@ Type: Problem Solving
 ```
 🔴 Hard
 Confidence: 78.5%
-Word Count: 10
+Word Count: 0
 
 Recommendations:
-⚠️ This is a challenging question. Consider for advanced students or final exams.
+ This is a challenging question. Consider for advanced students or final exams.
 ```
 
 ### Batch Analysis
@@ -373,29 +373,29 @@ Create a CSV file with a `question` column:
 
 ```csv
 question
-What is 2 + 2?
+What is  + ?
 Explain the theory of relativity
-Calculate the derivative of x^2
+Calculate the derivative of x^
 ```
 
 #### Upload and Analyze
 
-1. Navigate to **"Batch Analysis"** tab
-2. Upload CSV file
-3. Click **"Analyze All Questions"**
+. Navigate to **"Batch Analysis"** tab
+. Upload CSV file
+. Click **"Analyze All Questions"**
 4. Download results
 
 #### Output Format
 
 ```csv
 question,predicted_difficulty,difficulty_label,confidence_easy,confidence_medium,confidence_hard
-What is 2 + 2?,0,Easy,0.85,0.10,0.05
-Explain the theory of relativity,2,Hard,0.05,0.15,0.80
+What is  + ?,0,Easy,0.85,0.0,0.05
+Explain the theory of relativity,,Hard,0.05,0.5,0.80
 ```
 
 ---
 
-## 🔌 API Documentation
+##  API Documentation
 
 ### Model Prediction API
 
@@ -412,14 +412,14 @@ def predict_difficulty(question_text):
     prediction = model.predict(features)[0]
     probability = model.predict_proba(features)[0]
     
-    difficulty_map = {0: "Easy", 1: "Medium", 2: "Hard"}
+    difficulty_map = {0: "Easy", : "Medium", : "Hard"}
     return {
         'difficulty': difficulty_map[prediction],
         'confidence': max(probability),
         'probabilities': {
             'easy': probability[0],
-            'medium': probability[1],
-            'hard': probability[2]
+            'medium': probability[],
+            'hard': probability[]
         }
     }
 
@@ -437,35 +437,35 @@ print(result)
 
 | Metric | Easy | Medium | Hard | Overall |
 |--------|------|--------|------|---------|
-| **Precision** | 0.31 | 0.31 | 0.32 | 0.31 |
-| **Recall** | 0.29 | 0.23 | 0.42 | 0.31 |
-| **F1-Score** | 0.30 | 0.26 | 0.36 | 0.31 |
-| **Support** | 330 | 329 | 341 | 1000 |
+| **Precision** | 0. | 0. | 0. | 0. |
+| **Recall** | 0.9 | 0. | 0.4 | 0. |
+| **F-Score** | 0.0 | 0.6 | 0.6 | 0. |
+| **Support** | 0 | 9 | 4 | 000 |
 
 ### Confusion Matrix
 
 ```
               Predicted
               Easy  Med  Hard
-Actual Easy    96   120   114
-       Med     76    76   177
-       Hard    98   101   142
+Actual Easy    96   0   4
+       Med     76    76   77
+       Hard    98   0   4
 ```
 
 ### Key Insights
 
-- ✅ Model performs best on Hard questions (42% recall)
-- ⚠️ Medium questions are most challenging to classify
-- 🎯 Overall accuracy: 31.4% (baseline: 33.3%)
-- 📊 Balanced precision across all classes
+-  Model performs best on Hard questions (4% recall)
+-  Medium questions are most challenging to classify
+-  Overall accuracy: .4% (baseline: .%)
+-  Balanced precision across all classes
 
 ---
 
-## 🌐 Deployment
+##  Deployment
 
 ### Streamlit Community Cloud
 
-1. **Push to GitHub**
+. **Push to GitHub**
    ```bash
    git init
    git add .
@@ -473,7 +473,7 @@ Actual Easy    96   120   114
    git push origin main
    ```
 
-2. **Deploy on Streamlit Cloud**
+. **Deploy on Streamlit Cloud**
    - Visit [streamlit.io/cloud](https://streamlit.io/cloud)
    - Connect GitHub repository
    - Select `app.py` as main file
@@ -481,11 +481,11 @@ Actual Easy    96   120   114
 
 ### Hugging Face Spaces
 
-1. **Create Space**
+. **Create Space**
    - Visit [huggingface.co/spaces](https://huggingface.co/spaces)
    - Create new Streamlit Space
 
-2. **Upload Files**
+. **Upload Files**
    ```bash
    git clone https://huggingface.co/spaces/YOUR_USERNAME/YOUR_SPACE
    cp -r * YOUR_SPACE/
@@ -497,7 +497,7 @@ Actual Easy    96   120   114
 
 ### Render (Free Tier)
 
-1. **Create `render.yaml`**
+. **Create `render.yaml`**
    ```yaml
    services:
      - type: web
@@ -507,15 +507,15 @@ Actual Easy    96   120   114
        startCommand: streamlit run app.py
    ```
 
-2. **Deploy**
+. **Deploy**
    - Connect GitHub repository
    - Render auto-deploys on push
 
 ---
 
-## 🗺️ Roadmap
+##  Roadmap
 
-### ✅ Milestone 1: ML-Based Analytics (Completed)
+###  Milestone : ML-Based Analytics (Completed)
 - [x] Data preprocessing pipeline
 - [x] TF-IDF feature extraction
 - [x] Multiple ML models training
@@ -523,7 +523,7 @@ Actual Easy    96   120   114
 - [x] Batch processing support
 - [x] Model persistence with joblib
 
-### 🚧 Milestone 2: Agentic AI Assistant (In Progress)
+### 🚧 Milestone : Agentic AI Assistant (In Progress)
 - [ ] LangGraph workflow integration
 - [ ] RAG system for pedagogical knowledge
 - [ ] LLM integration (open-source)
@@ -531,7 +531,7 @@ Actual Easy    96   120   114
 - [ ] Assessment improvement generator
 - [ ] Structured output formatting
 
-### 🔮 Future Enhancements
+###  Future Enhancements
 - [ ] Multi-language support
 - [ ] Real-time collaboration
 - [ ] Question bank management
@@ -541,18 +541,18 @@ Actual Easy    96   120   114
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 We welcome contributions! Please follow these guidelines:
 
 ### How to Contribute
 
-1. **Fork the repository**
-2. **Create a feature branch**
+. **Fork the repository**
+. **Create a feature branch**
    ```bash
    git checkout -b feature/amazing-feature
    ```
-3. **Commit your changes**
+. **Commit your changes**
    ```bash
    git commit -m "Add amazing feature"
    ```
@@ -578,13 +578,13 @@ We welcome contributions! Please follow these guidelines:
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **Dataset**: Educational assessment data from academic institutions
 - **Frameworks**: Scikit-learn, Streamlit, Pandas communities
@@ -593,7 +593,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 📞 Contact & Support
+##  Contact & Support
 
 - **Project Lead**: [Your Name]
 - **Email**: your.email@example.com
@@ -606,6 +606,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **⭐ Star this repository if you find it helpful!**
 
-Made with ❤️ for Education
+Made with  for Education
 
 </div>
