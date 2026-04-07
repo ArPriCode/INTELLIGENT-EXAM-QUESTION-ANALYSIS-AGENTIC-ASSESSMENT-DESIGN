@@ -7,7 +7,4 @@ env/
 venv/
 ENV/
 .venv
-*.pkl
-models/*.pkl
 .DS_Store
-.streamlit/
