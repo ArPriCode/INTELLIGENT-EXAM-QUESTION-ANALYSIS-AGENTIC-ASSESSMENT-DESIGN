@@ -13,6 +13,16 @@
 
 [Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Architecture](#-architecture) • [Deployment](#-deployment) • [Contributing](#-contributing)
 
+### Quick Links
+
+**Live Demo**: [https://intelligent-exam-question-analysis-agentic-assessment-design-z.streamlit.app/](https://intelligent-exam-question-analysis-agentic-assessment-design-z.streamlit.app/)
+
+**GitHub Repository**: [https://github.com/ArPriCode/INTELLIGENT-EXAM-QUESTION-ANALYSIS-AGENTIC-ASSESSMENT-DESIGN](https://github.com/ArPriCode/INTELLIGENT-EXAM-QUESTION-ANALYSIS-AGENTIC-ASSESSMENT-DESIGN)
+
+**Project Documentation**: [https://docs.google.com/document/d/1LRctuu2P9yFw6RQKCJO0vOb89xWeLaMxcevKJkV_lJA/edit?tab=t.0](https://docs.google.com/document/d/1LRctuu2P9yFw6RQKCJO0vOb89xWeLaMxcevKJkV_lJA/edit?tab=t.0)
+
+---
+
 </div>
 
 ---
