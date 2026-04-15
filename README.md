@@ -605,13 +605,7 @@ We welcome contributions! Please follow these guidelines:
 - Include reproduction steps
 - Add screenshots if applicable
 
----
 
-##  License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
 
 ##  Acknowledgments
 
@@ -624,10 +618,9 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ##  Contact & Support
 
-- **Project Lead**: [Your Name]
-- **Email**: your.email@example.com
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/exam-question-analysis/issues)
+- **Project Lead**: [Arun Kumar Giri]
+- **GitHub**: [@yourusername](https://github.com/ArPriCode)
+
 
 ---
 
