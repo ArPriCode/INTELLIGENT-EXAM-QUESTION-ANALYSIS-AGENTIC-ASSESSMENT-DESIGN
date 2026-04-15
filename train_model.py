@@ -15,11 +15,15 @@ os.makedirs('models', exist_ok=True)
 def load_data():
     """Load the actual dataset"""
     try:
-        df = pd.read_csv('question_ans_analysis.csv')
+        # Try data folder first, then root directory
+        if os.path.exists('data/question_ans_analysis.csv'):
+            df = pd.read_csv('data/question_ans_analysis.csv')
+        else:
+            df = pd.read_csv('question_ans_analysis.csv')
         print(f"✅ Loaded dataset: {len(df)} questions")
         return df
     except FileNotFoundError:
-        print("❌ question_ans_analysis.csv not found!")
+        print("❌ question_ans_analysis.csv not found in data/ or root directory!")
         return None
 
 def train_model():

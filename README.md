@@ -136,14 +136,14 @@ The system addresses real-world challenges in educational assessment:
 - pip package manager
 - Git (for cloning repository)
 
-### Step : Clone Repository
+### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/exam-question-analysis.git
-cd exam-question-analysis
+git clone https://github.com/ArPriCode/INTELLIGENT-EXAM-QUESTION-ANALYSIS-AGENTIC-ASSESSMENT-DESIGN.git
+cd INTELLIGENT-EXAM-QUESTION-ANALYSIS-AGENTIC-ASSESSMENT-DESIGN
 ```
 
-### Step : Create Virtual Environment (Recommended)
+### Step 2: Create Virtual Environment (Recommended)
 
 ```bash
 # Create virtual environment
@@ -156,17 +156,26 @@ source venv/bin/activate
 venv\Scripts\activate
 ```
 
-### Step : Install Dependencies
+### Step 3: Install Dependencies
 
+Using pip:
 ```bash
 pip install -r requirements.txt
+```
+
+Or using conda:
+```bash
+conda env create -f environment.yml
+conda activate exam-question-analysis
 ```
 
 ### Step 4: Verify Installation
 
 ```bash
-python -c "import sklearn, streamlit, pandas; print(' All dependencies installed!')"
+python -c "import sklearn, streamlit, pandas; print('✅ All dependencies installed!')"
 ```
+
+For detailed setup instructions, see [SETUP.md](SETUP.md).
 
 ---
 
@@ -219,12 +228,16 @@ streamlit run app.py
 ```
 exam-question-analysis/
 │
-├──  app.py                          # Streamlit web application
-├──  train_model.py                  # Model training pipeline
-├──  requirements.txt                # Python dependencies
-├──  README.md                       # Project documentation
-├──  .gitignore                      # Git ignore rules
-├──  setup.sh                        # Deployment setup script
+├── 🚀 app.py                          # Streamlit web application
+├── 🧠 train_model.py                  # Model training pipeline
+├── 📋 requirements.txt                # Python dependencies (pip)
+├── 📋 environment.yml                 # Conda environment file
+├── 📖 README.md                       # Project documentation
+├── 📖 SETUP.md                        # Detailed setup guide
+├── 🔒 .gitignore                      # Git ignore rules
+├── ⚙️ setup.sh                        # Deployment setup script
+├── 📄 runtime.txt                     # Python version for deployment
+├── 📄 deployment_test.sh              # Deployment testing script
 │
 ├── 📂 models/                         # Trained models (generated)
 │   ├── difficulty_model.pkl          # Trained classifier
@@ -232,13 +245,17 @@ exam-question-analysis/
 │
 ├── 📂 data/                           # Dataset files
 │   ├── question_ans_analysis.csv     # Main dataset (5000 questions)
-│   └── sample_questions.csv          # Sample data for testing
+│   └── .gitkeep                      # Ensures folder is tracked
+│
+├── 📂 notebooks/                      # Jupyter notebooks
+│   ├── GENAI.ipynb                   # Exploratory data analysis
+│   └── .gitkeep                      # Ensures folder is tracked
+│
+├── 📂 scripts/                        # Utility scripts
+│   └── .gitkeep                      # Ensures folder is tracked
 │
 ├── 📂 .streamlit/                     # Streamlit configuration
 │   └── config.toml                   # UI theme and settings
-│
-├── 📂 notebooks/                      # Jupyter notebooks (optional)
-│   └── GENAI.ipynb                   # Exploratory data analysis
 │
 └── 📂 docs/                           # Additional documentation
     ├── API.md                        # API documentation
