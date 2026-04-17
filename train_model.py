@@ -20,10 +20,10 @@ def load_data():
             df = pd.read_csv('data/question_ans_analysis.csv')
         else:
             df = pd.read_csv('question_ans_analysis.csv')
-        print(f"✅ Loaded dataset: {len(df)} questions")
+        print(f" Loaded dataset: {len(df)} questions")
         return df
     except FileNotFoundError:
-        print("❌ question_ans_analysis.csv not found in data/ or root directory!")
+        print(" question_ans_analysis.csv not found in data/ or root directory!")
         return None
 
 def train_model():
@@ -89,7 +89,7 @@ def train_model():
     joblib.dump(best_model, 'models/difficulty_model.pkl')
     joblib.dump(vectorizer, 'models/tfidf_vectorizer.pkl')
     
-    print("✅ Models saved successfully!")
+    print(" Models saved successfully!")
     print("   - models/difficulty_model.pkl")
     print("   - models/tfidf_vectorizer.pkl")
     

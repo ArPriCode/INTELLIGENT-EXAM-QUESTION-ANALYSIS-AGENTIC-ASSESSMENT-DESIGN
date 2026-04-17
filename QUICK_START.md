@@ -2,7 +2,7 @@
 
 Get up and running in 5 minutes!
 
-## 🚀 Fast Setup
+##  Fast Setup
 
 ```bash
 # 1. Clone repository
@@ -22,7 +22,7 @@ python train_model.py
 streamlit run app.py
 ```
 
-## 📋 Checklist
+##  Checklist
 
 - [ ] Python 3.8+ installed
 - [ ] Dependencies installed (`pip install -r requirements.txt`)
@@ -49,7 +49,7 @@ streamlit run app.py --server.port 8502
 pip list | grep -E "streamlit|scikit-learn|pandas"
 ```
 
-## 📚 Next Steps
+##  Next Steps
 
 - Read [README.md](README.md) for full documentation
 - Check [SETUP.md](SETUP.md) for detailed setup

@@ -6,7 +6,7 @@
 **Student**: Arun Kumar Giri  
 **Supervisor**: Bipul Shahi  
 **Submission Date**: April 17, 2026  
-**Status**: ✅ COMPLETE & PRODUCTION-READY
+**Status**:  COMPLETE & PRODUCTION-READY
 
 ---
 
@@ -58,11 +58,11 @@ Existing solutions are either:
 5. Ensure responsible AI practices
 
 **Success Criteria**:
-- ✅ Accuracy > 30% (baseline: 33.3%)
-- ✅ Real-time predictions (< 5 seconds)
-- ✅ User-friendly interface
-- ✅ Public deployment
-- ✅ Comprehensive documentation
+-  Accuracy > 30% (baseline: 33.3%)
+-  Real-time predictions (< 5 seconds)
+-  User-friendly interface
+-  Public deployment
+-  Comprehensive documentation
 
 ---
 
@@ -123,7 +123,7 @@ CSV Dataset (5000 questions)
     │   └─ Categorical Features (subject, cognitive level)
     │
     ├─→ [Model Training]
-    │   ├─ Logistic Regression (31.4% accuracy) ✅
+    │   ├─ Logistic Regression (31.4% accuracy) 
     │   ├─ Decision Tree (29.8% accuracy)
     │   └─ Random Forest (28.5% accuracy)
     │
@@ -239,7 +239,7 @@ def clean_text(text):
 
 | Model | Algorithm | Hyperparameters | Accuracy | Precision | Recall | F1-Score |
 |-------|-----------|-----------------|----------|-----------|--------|----------|
-| **Logistic Regression** | Linear | max_iter=1000, C=1.0 | **31.4%** ✅ | 0.31 | 0.31 | 0.31 |
+| **Logistic Regression** | Linear | max_iter=1000, C=1.0 | **31.4%**  | 0.31 | 0.31 | 0.31 |
 | Decision Tree | Tree-based | max_depth=6 | 29.8% | 0.30 | 0.30 | 0.30 |
 | Random Forest | Ensemble | n_estimators=100 | 28.5% | 0.29 | 0.29 | 0.29 |
 
@@ -463,12 +463,12 @@ class AssessmentState(BaseModel):
 - **Documentation**: 100%
 
 #### Best Practices
-- ✅ Type hints throughout
-- ✅ Docstrings for all functions
-- ✅ Error handling
-- ✅ Logging
-- ✅ Configuration management
-- ✅ Modular design
+-  Type hints throughout
+-  Docstrings for all functions
+-  Error handling
+-  Logging
+-  Configuration management
+-  Modular design
 
 ### 5.3 Performance Optimization
 
@@ -513,11 +513,11 @@ def load_models():
 ### 6.2 Milestone 2 Evaluation
 
 #### Qualitative Assessment
-- ✅ Agentic reasoning works correctly
-- ✅ RAG retrieval is relevant
-- ✅ Suggestions are actionable
-- ✅ State management is robust
-- ✅ Workflow completes successfully
+-  Agentic reasoning works correctly
+-  RAG retrieval is relevant
+-  Suggestions are actionable
+-  State management is robust
+-  Workflow completes successfully
 
 #### Quantitative Metrics
 - **Suggestion Coverage**: 100% of questions
@@ -548,7 +548,7 @@ def load_models():
 #### Production Environment
 - **Platform**: Streamlit Cloud
 - **URL**: https://intelligent-exam-question-analysis-agentic-assessment-design-z.streamlit.app/
-- **Status**: ✅ Live & Operational
+- **Status**:  Live & Operational
 - **Uptime**: 99.9%
 
 #### Alternative Deployments
@@ -576,28 +576,28 @@ def load_models():
 ### 8.1 Ethical Considerations
 
 #### Transparency
-- ✅ Clear explanation of AI limitations
-- ✅ Confidence scores provided
-- ✅ Reasoning explained
-- ✅ Disclaimers included
+-  Clear explanation of AI limitations
+-  Confidence scores provided
+-  Reasoning explained
+-  Disclaimers included
 
 #### Bias Mitigation
-- ✅ Balanced training data
-- ✅ Cross-validation
-- ✅ Multiple models evaluated
-- ✅ Bias acknowledged
+-  Balanced training data
+-  Cross-validation
+-  Multiple models evaluated
+-  Bias acknowledged
 
 #### Human-in-the-Loop
-- ✅ Educators make final decisions
-- ✅ AI provides suggestions only
-- ✅ No automated enforcement
-- ✅ Review process required
+-  Educators make final decisions
+-  AI provides suggestions only
+-  No automated enforcement
+-  Review process required
 
 #### Privacy
-- ✅ No student data collection
-- ✅ Question data only
-- ✅ No tracking
-- ✅ GDPR compliant
+-  No student data collection
+-  Question data only
+-  No tracking
+-  GDPR compliant
 
 ### 8.2 Disclaimers
 
@@ -818,7 +818,7 @@ print(improvements)
 
 Made with for Education
 
-**Status**: ✅ COMPLETE & PRODUCTION-READY  
+**Status**:  COMPLETE & PRODUCTION-READY  
 **Version**: 2.0.0  
 **Last Updated**: April 17, 2026
 

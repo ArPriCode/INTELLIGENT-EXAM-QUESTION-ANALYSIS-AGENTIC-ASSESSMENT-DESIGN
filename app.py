@@ -15,7 +15,7 @@ import json
 # Page config
 st.set_page_config(
     page_title="Assessment Intelligence Platform",
-    page_icon="🎓",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -144,14 +144,14 @@ def generate_improvements(question_text: str, difficulty: str, cognitive_level: 
             'category': 'Difficulty',
             'suggestion': 'Consider increasing cognitive complexity. Add "why" or "how" questions to move beyond recall.',
             'priority': 'Medium',
-            'icon': '📈'
+            'icon': ''
         })
     elif difficulty == 'Hard':
         improvements.append({
             'category': 'Difficulty',
             'suggestion': 'Simplify language or break into sub-questions to reduce cognitive load.',
             'priority': 'High',
-            'icon': '⚠️'
+            'icon': ''
         })
     
     # Cognitive level improvements
@@ -160,7 +160,7 @@ def generate_improvements(question_text: str, difficulty: str, cognitive_level: 
             'category': 'Cognitive Level',
             'suggestion': f'Current level: {cognitive_level}. Consider moving to Apply/Analyze for deeper learning.',
             'priority': 'Medium',
-            'icon': '🧠'
+            'icon': ''
         })
     
     # Text metrics improvements
@@ -169,14 +169,14 @@ def generate_improvements(question_text: str, difficulty: str, cognitive_level: 
             'category': 'Clarity',
             'suggestion': f'Question is long ({metrics["word_count"]} words). Consider breaking into shorter, clearer questions.',
             'priority': 'Medium',
-            'icon': '✂️'
+            'icon': ''
         })
     elif metrics['word_count'] < 10:
         improvements.append({
             'category': 'Clarity',
             'suggestion': 'Question is very short. Add context or details to make it clearer.',
             'priority': 'Low',
-            'icon': '📝'
+            'icon': ''
         })
     
     # Sentence complexity
@@ -185,17 +185,17 @@ def generate_improvements(question_text: str, difficulty: str, cognitive_level: 
             'category': 'Structure',
             'suggestion': 'Multiple sentences detected. Consider simplifying or using bullet points.',
             'priority': 'Low',
-            'icon': '📋'
+            'icon': ''
         })
     
     return improvements
 
 # Main UI
-st.markdown("<h1 class='main-header'>🎓 Assessment Intelligence Platform</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='main-header'> Assessment Intelligence Platform</h1>", unsafe_allow_html=True)
 st.markdown("""
 <div style='text-align: center; margin-bottom: 2rem;'>
-    <span class='milestone-badge m1-badge'>✅ Milestone 1: ML Analytics</span>
-    <span class='milestone-badge m2-badge'>✅ Milestone 2: Agentic AI</span>
+    <span class='milestone-badge m1-badge'> Milestone 1: ML Analytics</span>
+    <span class='milestone-badge m2-badge'> Milestone 2: Agentic AI</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -203,14 +203,14 @@ st.markdown("*Unified Platform: From ML-Based Analysis to Autonomous Assessment 
 
 # Sidebar
 with st.sidebar:
-    st.markdown("### 🎯 Navigation")
+    st.markdown("###  Navigation")
     mode = st.radio(
         "Select Mode:",
-        ["📊 Question Analysis", "📈 Batch Processing", "🧠 AI Insights", "📚 Knowledge Base", "ℹ️ About"]
+        [" Question Analysis", " Batch Processing", " AI Insights", " Knowledge Base", " About"]
     )
 
 # Main content
-if mode == "📊 Question Analysis":
+if mode == " Question Analysis":
     st.markdown("<h2 class='sub-header'>Single Question Analysis</h2>", unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
@@ -223,7 +223,7 @@ if mode == "📊 Question Analysis":
                                        ["Remember", "Understand", "Apply", "Analyze", "Evaluate", "Create"])
         grade_level = st.slider("Grade Level:", 1, 12, 10)
     
-    if st.button("🔍 Analyze Question", key="analyze_btn", use_container_width=True):
+    if st.button(" Analyze Question", key="analyze_btn", use_container_width=True):
         if question_text:
             model, vectorizer = load_models()
             if model and vectorizer:
@@ -231,7 +231,7 @@ if mode == "📊 Question Analysis":
                 difficulty, confidence = predict_difficulty(question_text, model, vectorizer)
                 
                 # Display M1 Results
-                st.markdown("<h3>📊 Milestone 1: ML-Based Analysis</h3>", unsafe_allow_html=True)
+                st.markdown("<h3> Milestone 1: ML-Based Analysis</h3>", unsafe_allow_html=True)
                 
                 col1, col2, col3 = st.columns(3)
                 with col1:
@@ -245,13 +245,13 @@ if mode == "📊 Question Analysis":
                 st.bar_chart(confidence)
                 
                 # Milestone 2: Generate improvements
-                st.markdown("<h3>🤖 Milestone 2: AI-Powered Improvements</h3>", unsafe_allow_html=True)
+                st.markdown("<h3> Milestone 2: AI-Powered Improvements</h3>", unsafe_allow_html=True)
                 
                 improvements = generate_improvements(question_text, difficulty, cognitive_level)
                 
                 if improvements:
                     for imp in improvements:
-                        priority_color = "🔴" if imp['priority'] == 'High' else ("🟡" if imp['priority'] == 'Medium' else "🟢")
+                        priority_color = "" if imp['priority'] == 'High' else ("" if imp['priority'] == 'Medium' else "")
                         st.markdown(f"""
                         <div class='improvement-box'>
                         {imp['icon']} **{imp['category']}** ({priority_color} {imp['priority']})<br>
@@ -260,7 +260,7 @@ if mode == "📊 Question Analysis":
                         """, unsafe_allow_html=True)
                 
                 # Metrics
-                st.markdown("<h3>📈 Question Metrics</h3>", unsafe_allow_html=True)
+                st.markdown("<h3> Question Metrics</h3>", unsafe_allow_html=True)
                 metrics = analyze_question_metrics(question_text)
                 
                 col1, col2, col3, col4 = st.columns(4)
@@ -273,7 +273,7 @@ if mode == "📊 Question Analysis":
                 with col4:
                     st.metric("Readability", metrics['readability_estimate'])
 
-elif mode == "📈 Batch Processing":
+elif mode == " Batch Processing":
     st.markdown("<h2 class='sub-header'>Batch Question Analysis</h2>", unsafe_allow_html=True)
     
     uploaded_file = st.file_uploader("Upload CSV with questions:", type="csv")
@@ -304,7 +304,7 @@ elif mode == "📈 Batch Processing":
             st.dataframe(results_df, use_container_width=True)
             
             # Summary statistics
-            st.markdown("<h3>📊 Summary Statistics</h3>", unsafe_allow_html=True)
+            st.markdown("<h3> Summary Statistics</h3>", unsafe_allow_html=True)
             col1, col2, col3, col4 = st.columns(4)
             with col1:
                 st.metric("Total Questions", len(results_df))
@@ -322,28 +322,28 @@ elif mode == "📈 Batch Processing":
             
             # Download results
             csv = results_df.to_csv(index=False)
-            st.download_button("📥 Download Results", csv, "assessment_results.csv", "text/csv")
+            st.download_button(" Download Results", csv, "assessment_results.csv", "text/csv")
 
-elif mode == "🧠 AI Insights":
+elif mode == " AI Insights":
     st.markdown("<h2 class='sub-header'>AI-Powered Assessment Insights</h2>", unsafe_allow_html=True)
     
     st.markdown("""
-    ### 🤖 Milestone 2: Agentic AI Features
+    ###  Milestone 2: Agentic AI Features
     
     This section demonstrates autonomous AI reasoning for assessment improvement:
     
     **Key Capabilities:**
-    - 🔍 Autonomous question analysis
-    - 💡 Intelligent improvement suggestions
-    - 📚 Pedagogical knowledge retrieval
-    - 🎯 Learning objective alignment
-    - 📊 Assessment quality metrics
+    -  Autonomous question analysis
+    -  Intelligent improvement suggestions
+    -  Pedagogical knowledge retrieval
+    -  Learning objective alignment
+    -  Assessment quality metrics
     """)
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("#### 📋 Question Analysis Workflow")
+        st.markdown("####  Question Analysis Workflow")
         st.markdown("""
         1. **Analyze** - Extract metrics & predict difficulty
         2. **Retrieve** - Query pedagogical knowledge base
@@ -353,7 +353,7 @@ elif mode == "🧠 AI Insights":
         """)
     
     with col2:
-        st.markdown("#### 🎓 Supported Features")
+        st.markdown("####  Supported Features")
         st.markdown("""
         - Bloom's Taxonomy alignment
         - Difficulty calibration
@@ -363,25 +363,25 @@ elif mode == "🧠 AI Insights":
         - Cognitive load evaluation
         """)
 
-elif mode == "📚 Knowledge Base":
+elif mode == " Knowledge Base":
     st.markdown("<h2 class='sub-header'>Pedagogical Knowledge Base</h2>", unsafe_allow_html=True)
     
-    st.markdown("### 📖 Assessment Design Best Practices")
+    st.markdown("###  Assessment Design Best Practices")
     
     for topic, content in PEDAGOGICAL_KNOWLEDGE.items():
         with st.expander(f"📌 {topic}"):
             st.info(content)
 
-elif mode == "ℹ️ About":
+elif mode == " About":
     st.markdown("<h2 class='sub-header'>About This Platform</h2>", unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
-        ### 🎯 Milestone 1: ML-Based Analytics
+        ###  Milestone 1: ML-Based Analytics
         
-        **Status**: ✅ Complete
+        **Status**:  Complete
         
         - ML-based difficulty prediction
         - TF-IDF vectorization (5,000 features)
@@ -393,9 +393,9 @@ elif mode == "ℹ️ About":
     
     with col2:
         st.markdown("""
-        ### 🤖 Milestone 2: Agentic AI
+        ###  Milestone 2: Agentic AI
         
-        **Status**: ✅ Complete
+        **Status**:  Complete
         
         - LangGraph-based workflow
         - RAG integration
@@ -408,7 +408,7 @@ elif mode == "ℹ️ About":
     st.markdown("---")
     
     st.markdown("""
-    ### 📊 Project Statistics
+    ###  Project Statistics
     
     | Metric | Value |
     |--------|-------|
@@ -417,9 +417,9 @@ elif mode == "ℹ️ About":
     | ML Models Trained | 3 |
     | Best Accuracy | 31.4% |
     | Knowledge Base Docs | 8 |
-    | Deployment Status | ✅ Live |
+    | Deployment Status |  Live |
     
-    ### 🔗 Links
+    ###  Links
     
     - **Live Demo**: https://intelligent-exam-question-analysis-agentic-assessment-design-z.streamlit.app/
     - **GitHub**: https://github.com/ArPriCode/INTELLIGENT-EXAM-QUESTION-ANALYSIS-AGENTIC-ASSESSMENT-DESIGN
@@ -436,7 +436,7 @@ elif mode == "ℹ️ About":
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: #666; font-size: 0.9rem;'>
-    <p>🎓 Intelligent Exam Question Analysis & Agentic Assessment Design</p>
-    <p>Made with ❤️ for Education | Version 2.0.0 | Status: ✅ Production Ready</p>
+    <p> Intelligent Exam Question Analysis & Agentic Assessment Design</p>
+    <p>Made with  for Education | Version 2.0.0 | Status:  Production Ready</p>
 </div>
 """, unsafe_allow_html=True)

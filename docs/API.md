@@ -10,7 +10,7 @@ This document provides detailed information about the internal APIs and function
 
 ---
 
-## 🧠 Model API
+##  Model API
 
 ### Load Models
 
@@ -210,7 +210,7 @@ def train_model(data_path='question_ans_analysis.csv'):
 
 ---
 
-## 📈 Evaluation API
+##  Evaluation API
 
 ### Calculate Metrics
 
@@ -259,7 +259,7 @@ def display_prediction_results(prediction, probability, question_text):
     import streamlit as st
     
     difficulty_map = {0: "Easy", 1: "Medium", 2: "Hard"}
-    color_map = {0: "🟢", 1: "🟡", 2: "🔴"}
+    color_map = {0: "", 1: "", 2: ""}
     
     # Display difficulty
     st.markdown(f"## {color_map[prediction]} {difficulty_map[prediction]}")

@@ -59,10 +59,10 @@
 
 This project implements a **two-milestone educational analytics system** that transforms from classical ML-based question analysis to an autonomous agentic AI assessment designer.
 
-### 🎯 Milestone 1: ML-Based Exam Question Analytics ✅ COMPLETE
+###  Milestone 1: ML-Based Exam Question Analytics  COMPLETE
 Applies classical machine learning and NLP techniques to analyze exam questions and student responses, predicting difficulty levels and identifying learning gaps.
 
-**Status**: ✅ Production Ready | **Accuracy**: 31.4% | **Deployment**: Live on Streamlit Cloud
+**Status**:  Production Ready | **Accuracy**: 31.4% | **Deployment**: Live on Streamlit Cloud
 
 **Key Achievements**:
 - Trained 3 ML models (Logistic Regression, Decision Tree, Random Forest)
@@ -71,10 +71,10 @@ Applies classical machine learning and NLP techniques to analyze exam questions 
 - Batch processing for multiple questions
 - Interactive Streamlit dashboard
 
-### 🚀 Milestone 2: Agentic AI Assessment Design Assistant ✅ COMPLETE
+###  Milestone 2: Agentic AI Assessment Design Assistant  COMPLETE
 Extends the system into an agent-based AI application using **LangGraph** that autonomously reasons about assessment quality, retrieves pedagogical best practices, and generates structured improvements.
 
-**Status**: ✅ Production Ready | **Architecture**: LangGraph + RAG | **Knowledge Base**: 8 pedagogical documents
+**Status**:  Production Ready | **Architecture**: LangGraph + RAG | **Knowledge Base**: 8 pedagogical documents
 
 **Key Achievements**:
 - LangGraph-based agentic workflow with state management
@@ -384,7 +384,7 @@ conda activate exam-question-analysis
 ### Step 4: Verify Installation
 
 ```bash
-python -c "import sklearn, streamlit, pandas; print('✅ All dependencies installed!')"
+python -c "import sklearn, streamlit, pandas; print(' All dependencies installed!')"
 ```
 
 For detailed setup instructions, see [SETUP.md](SETUP.md).
@@ -393,7 +393,7 @@ For detailed setup instructions, see [SETUP.md](SETUP.md).
 
 ##  Quick Start
 
-### 🎯 Choose Your Path
+###  Choose Your Path
 
 #### Option 1: Milestone 1 (ML-Based Analytics) - Recommended for Quick Start
 
@@ -429,7 +429,7 @@ streamlit run app_milestone2.py
 # Access at: http://localhost:8501
 ```
 
-### 📊 Train the Model
+###  Train the Model
 
 ```bash
 python train_model.py
@@ -456,10 +456,10 @@ Accuracy: 0.314
 Accuracy: 0.298
 
 Best model: Logistic Regression with accuracy 0.314
-✅ Models saved successfully!
+ Models saved successfully!
 ```
 
-### 🚀 Launch Application
+###  Launch Application
 
 #### Milestone 1 App
 ```bash
@@ -473,7 +473,7 @@ streamlit run app_milestone2.py
 
 **Access the application at:** `http://localhost:8501`
 
-### 📝 Analyze Questions
+###  Analyze Questions
 
 #### Single Question Analysis
 
@@ -505,14 +505,14 @@ streamlit run app_milestone2.py
 ```
 exam-question-analysis/
 │
-├── 🚀 APPLICATIONS
+├──  APPLICATIONS
 │   ├── app.py                          # Milestone 1: ML-based Streamlit app
 │   └── app_milestone2.py               # Milestone 2: Agentic AI Streamlit app
 │
-├── 🧠 MODEL TRAINING
+├──  MODEL TRAINING
 │   └── train_model.py                  # ML model training pipeline
 │
-├── 📚 NOTEBOOKS
+├──  NOTEBOOKS
 │   ├── GENAI.ipynb                     # Exploratory data analysis & experiments
 │   └── GENAI (2).ipynb                 # Milestone 2 development notebook
 │
@@ -521,7 +521,7 @@ exam-question-analysis/
 │   ├── environment.yml                 # Conda environment file
 │   └── runtime.txt                     # Python version for deployment
 │
-├── 📖 DOCUMENTATION
+├──  DOCUMENTATION
 │   ├── README.md                       # Main project documentation
 │   ├── SETUP.md                        # Detailed setup guide
 │   ├── QUICK_START.md                  # Quick start guide
@@ -529,35 +529,35 @@ exam-question-analysis/
 │   ├── MILESTONE2_SUMMARY.md           # Milestone 2 summary
 │   └── PROJECT_REPORT.md               # Comprehensive project report
 │
-├── 📂 docs/                            # Additional documentation
+├──  docs/                            # Additional documentation
 │   ├── API.md                          # API documentation
 │   ├── DEPLOYMENT.md                   # Deployment guide
 │   ├── MILESTONE2.md                   # Milestone 2 detailed docs
 │   └── CONTRIBUTING.md                 # Contribution guidelines
 │
-├── 📂 models/                          # Trained models (generated)
+├──  models/                          # Trained models (generated)
 │   ├── difficulty_model.pkl            # Trained classifier
 │   └── tfidf_vectorizer.pkl            # TF-IDF vectorizer
 │
-├── 📂 data/                            # Dataset files
+├──  data/                            # Dataset files
 │   ├── question_ans_analysis.csv       # Main dataset (5000 questions)
 │   └── .gitkeep                        # Ensures folder is tracked
 │
-├── 📂 scripts/                         # Utility scripts
+├──  scripts/                         # Utility scripts
 │   ├── verify_setup.py                 # Setup verification script
 │   └── .gitkeep                        # Ensures folder is tracked
 │
-├── 📂 .streamlit/                      # Streamlit configuration
+├──  .streamlit/                      # Streamlit configuration
 │   └── config.toml                     # UI theme and settings
 │
-├── 📂 .vscode/                         # VS Code settings (optional)
+├──  .vscode/                         # VS Code settings (optional)
 │   └── settings.json                   # Editor configuration
 │
-├── 🔒 .gitignore                       # Git ignore rules
-├── ⚙️ setup.sh                         # Deployment setup script
-├── 📄 deployment_test.sh               # Deployment testing script
-├── 📄 LICENSE                          # MIT License
-└── 📄 .python-version                  # Python version specification
+├──  .gitignore                       # Git ignore rules
+├──  setup.sh                         # Deployment setup script
+├──  deployment_test.sh               # Deployment testing script
+├──  LICENSE                          # MIT License
+└──  .python-version                  # Python version specification
 ```
 
 ### Key Files Explained
@@ -608,7 +608,7 @@ exam-question-analysis/
 
 ---
 
-## 🧠 Model Architecture
+##  Model Architecture
 
 ### Milestone 1: ML-Based Classification Pipeline
 
@@ -637,7 +637,7 @@ Text Input → Preprocessing → TF-IDF Vectorization → ML Model → Predictio
 
 | Model | Algorithm | Hyperparameters | Accuracy |
 |-------|-----------|-----------------|----------|
-| **Logistic Regression** | Linear classifier | max_iter=1000, C=1.0 | 31.4% ✅ |
+| **Logistic Regression** | Linear classifier | max_iter=1000, C=1.0 | 31.4%  |
 | **Decision Tree** | Tree-based classifier | max_depth=6, random_state=42 | 29.8% |
 | **Random Forest** | Ensemble method | n_estimators=100, random_state=42 | 28.5% |
 
@@ -733,7 +733,7 @@ class AssessmentState(BaseModel):
 
 ---
 
-## 📖 Usage Guide
+##  Usage Guide
 
 ### Single Question Analysis
 
@@ -770,7 +770,7 @@ Type: Problem Solving
 
 **Output:**
 ```
-🔴 Hard
+ Hard
 Confidence: 78.5%
 Word Count: 0
 
@@ -844,7 +844,7 @@ print(result)
 
 ---
 
-## 📈 Performance Metrics
+##  Performance Metrics
 
 ### Model Evaluation (Test Set)
 
@@ -902,14 +902,14 @@ OLLAMA_BASE_URL = "http://localhost:11434"
 OPENAI_API_KEY = "sk-..."  # Optional
 ```
 
-### 🎯 Hugging Face Spaces
+###  Hugging Face Spaces
 
 1. Create new Streamlit Space
 2. Upload repository files
 3. Select `app.py` or `app_milestone2.py`
 4. Auto-deploys on push
 
-### 🚀 Render (Free Tier)
+###  Render (Free Tier)
 
 #### Create `render.yaml`
 ```yaml
@@ -965,7 +965,7 @@ docker build -t exam-analysis .
 docker run -p 8501:8501 exam-analysis
 ```
 
-### 📋 Environment Variables
+###  Environment Variables
 
 Create `.env` file:
 ```bash
@@ -976,7 +976,7 @@ CHROMA_DB_PATH=./chroma_db
 PYTHONUNBUFFERED=1
 ```
 
-### ✅ Deployment Checklist
+###  Deployment Checklist
 
 - [ ] All dependencies in `requirements.txt`
 - [ ] Models trained and saved in `models/`
@@ -993,7 +993,7 @@ PYTHONUNBUFFERED=1
 
 ##  Roadmap
 
-### ✅ Milestone 1: ML-Based Analytics (COMPLETE)
+###  Milestone 1: ML-Based Analytics (COMPLETE)
 - [x] Data preprocessing pipeline
 - [x] TF-IDF feature extraction
 - [x] Multiple ML models training (Logistic Regression, Decision Tree, Random Forest)
@@ -1005,7 +1005,7 @@ PYTHONUNBUFFERED=1
 - [x] Confidence scoring
 - [x] Deployment on Streamlit Cloud
 
-### ✅ Milestone 2: Agentic AI Assistant (COMPLETE)
+###  Milestone 2: Agentic AI Assistant (COMPLETE)
 - [x] LangGraph workflow integration
 - [x] State management (AssessmentState)
 - [x] RAG system with Chroma vector database
@@ -1019,7 +1019,7 @@ PYTHONUNBUFFERED=1
 - [x] Responsible AI practices
 - [x] Comprehensive documentation
 
-### 🚀 Future Enhancements (Phase 3)
+###  Future Enhancements (Phase 3)
 - [ ] Fine-tuned LLMs on educational data
 - [ ] Expanded knowledge base (50+ documents)
 - [ ] Multi-modal support (images, equations, code)
@@ -1033,7 +1033,7 @@ PYTHONUNBUFFERED=1
 - [ ] Feedback loop & continuous learning
 - [ ] Multi-language support
 
-### 📊 Phase 3: Enterprise Features
+###  Phase 3: Enterprise Features
 - [ ] User authentication & authorization
 - [ ] Role-based access control (Admin, Educator, Student)
 - [ ] Question bank versioning
