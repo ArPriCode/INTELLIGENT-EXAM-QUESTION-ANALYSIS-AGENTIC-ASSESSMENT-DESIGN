@@ -816,7 +816,7 @@ print(improvements)
 
 **⭐ Star this repository if you find it helpful!**
 
-Made with ❤️ for Education
+Made with for Education
 
 **Status**: ✅ COMPLETE & PRODUCTION-READY  
 **Version**: 2.0.0  
