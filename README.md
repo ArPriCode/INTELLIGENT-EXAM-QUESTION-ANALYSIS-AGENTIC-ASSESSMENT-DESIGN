@@ -19,11 +19,6 @@
 
 **GitHub Repository**: [https://github.com/ArPriCode/INTELLIGENT-EXAM-QUESTION-ANALYSIS-AGENTIC-ASSESSMENT-DESIGN](https://github.com/ArPriCode/INTELLIGENT-EXAM-QUESTION-ANALYSIS-AGENTIC-ASSESSMENT-DESIGN)
 
-**Project Documentation**:
-
-**Milstone 1**: (https://docs.google.com/document/d/1AnBYpheyPMNxgLhcVyPFYkKNQgw0D4QIhvBu9uZ2kBc/edit?tab=t.0)
-
-**Milstone 2**: (https://docs.google.com/document/d/1er9-hSmBL-2Ua-xhJghjVNM3CmrHdfLfoHH6NJcJ2e4/edit?tab=t.0)
 
 
 **Project Demo Video**: [https://drive.google.com/file/d/10V1DL63y57piQ8zQleqcvw2FvcM1xUrX/view?usp=sharing](https://drive.google.com/file/d/10V1DL63y57piQ8zQleqcvw2FvcM1xUrX/view?usp=sharing)
