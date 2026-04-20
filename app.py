@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 
 # Page configuration
 st.set_page_config(
-    page_title="Exam Question Analysis - Milestone 1",
+    page_title="Intelligent Exam Question Analysis",
     page_icon="📚",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -107,7 +107,7 @@ def analyze_text_metrics(text):
 def main():
     # Header
     st.markdown('<h1 class="main-header">Intelligent Exam Question Analysis</h1>', unsafe_allow_html=True)
-    st.markdown('<p style="text-align: center; font-size: 1.2rem; color: #666;">Milestone 1: ML-Based Question Difficulty Prediction</p>', unsafe_allow_html=True)
+    st.markdown('<p style="text-align: center; font-size: 1.2rem; color: #666;">ML-Based Question Difficulty Prediction</p>', unsafe_allow_html=True)
     
     # Load models
     model, vectorizer, scaler = load_models()
