@@ -1,21 +1,16 @@
-"""
-Unified Application: Intelligent Exam Question Analysis & Agentic Assessment Design
-Combines Milestone 1 (ML-Based Analytics) + Milestone 2 (Agentic AI)
-"""
-
 import streamlit as st
-import joblib
-import numpy as np
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+import joblib
 import os
-from typing import Optional, Dict, Any
-import json
+from sklearn.feature_extraction.text import TfidfVectorizer
+import plotly.express as px
+import plotly.graph_objects as go
 
-# Page config
+# Page configuration
 st.set_page_config(
-    page_title="Assessment Intelligence Platform",
-    page_icon="",
+    page_title="Exam Question Analysis - Milestone 1",
+    page_icon="📚",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -25,418 +20,403 @@ st.markdown("""
 <style>
     .main-header {
         font-size: 2.5rem;
-        color: #1f77b4;
+        font-weight: bold;
         text-align: center;
-        margin-bottom: 1rem;
-    }
-    .sub-header {
-        font-size: 1.5rem;
-        color: #ff7f0e;
-        margin-top: 1rem;
-    }
-    .result-box {
-        padding: 1.5rem;
-        border-radius: 10px;
-        background-color: #f0f2f6;
-        margin: 1rem 0;
+        margin-bottom: 2rem;
+        color: #1f77b4;
     }
     .metric-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-color: #f0f2f6;
         padding: 1rem;
-        border-radius: 10px;
-        color: white;
-        text-align: center;
+        border-radius: 0.5rem;
+        border-left: 4px solid #1f77b4;
     }
-    .improvement-box {
-        background-color: #e8f5e9;
+    .success-box {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        border-radius: 0.25rem;
         padding: 1rem;
-        border-left: 4px solid #4caf50;
         margin: 1rem 0;
-        border-radius: 5px;
     }
-    .milestone-badge {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-weight: bold;
-        margin: 0.5rem;
-    }
-    .m1-badge {
-        background-color: #e3f2fd;
-        color: #1976d2;
-    }
-    .m2-badge {
-        background-color: #f3e5f5;
-        color: #7b1fa2;
+    .warning-box {
+        background-color: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        margin: 1rem 0;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# Load models
 @st.cache_resource
 def load_models():
+    """Load trained models"""
     try:
-        if not os.path.exists('models'):
-            st.error("Models directory not found. Please run train_model.py first.")
-            return None, None
-        
         model = joblib.load('models/difficulty_model.pkl')
         vectorizer = joblib.load('models/tfidf_vectorizer.pkl')
         return model, vectorizer
-    except FileNotFoundError as e:
-        st.error(f"Error loading models: {e}")
+    except FileNotFoundError:
         return None, None
 
-# Pedagogical knowledge base for M2
-PEDAGOGICAL_KNOWLEDGE = {
-    "Bloom's Taxonomy": "Bloom's Taxonomy has 6 levels: Remember, Understand, Apply, Analyze, Evaluate, Create. Higher levels require deeper cognitive engagement and critical thinking.",
-    "Discrimination Index": "Measures how well a question differentiates between high and low performers. Higher is better (0.3+). Questions with low discrimination don't effectively measure learning.",
-    "Difficulty Calibration": "Easy questions (70%+ correct), Medium (45-65%), Hard (15-35%). Balance is key for effective assessment. Mix difficulty levels to maintain student engagement.",
-    "Learning Gap Identification": "When many students fail a question, it indicates a knowledge gap. Provide remedial content and re-teach the concept before moving forward.",
-    "Assessment Quality": "Combine difficulty, discrimination, and alignment with learning objectives for comprehensive evaluation. Quality questions are clear, fair, and aligned.",
-    "Question Design Best Practices": "Use clear language, avoid ambiguity, align with learning objectives, test one concept per question. Avoid trick questions and cultural bias.",
-    "Readability": "Flesch-Kincaid score 40-60 for easy, 60-80 for medium, 80+ for hard. Adjust language complexity accordingly. Shorter sentences improve clarity.",
-    "Cognitive Load": "Shorter questions (15-25 words) reduce cognitive load. Longer questions (35+ words) increase difficulty. Balance information density.",
-}
-
-def predict_difficulty(question_text: str, model, vectorizer) -> tuple:
-    """Milestone 1: Predict question difficulty"""
-    try:
-        X = vectorizer.transform([question_text])
-        prediction = model.predict(X)[0]
-        probabilities = model.predict_proba(X)[0]
-        
-        # Map numeric prediction to string
-        difficulty_map = {0: 'Easy', 1: 'Medium', 2: 'Hard'}
-        difficulty_str = difficulty_map.get(int(prediction), 'Unknown')
-        
-        confidence_scores = {
-            'Easy': float(probabilities[0]),
-            'Medium': float(probabilities[1]),
-            'Hard': float(probabilities[2])
+def predict_difficulty(question_text, model, vectorizer):
+    """Predict question difficulty"""
+    if not question_text.strip():
+        return None
+    
+    # Vectorize the question
+    features = vectorizer.transform([question_text])
+    
+    # Predict
+    prediction = model.predict(features)[0]
+    probabilities = model.predict_proba(features)[0]
+    
+    difficulty_map = {0: "Easy", 1: "Medium", 2: "Hard"}
+    
+    return {
+        'difficulty': difficulty_map[prediction],
+        'confidence': max(probabilities),
+        'probabilities': {
+            'Easy': probabilities[0],
+            'Medium': probabilities[1],
+            'Hard': probabilities[2]
         }
-        
-        return difficulty_str, confidence_scores
-    except Exception as e:
-        st.error(f"Error in prediction: {e}")
-        return None, None
+    }
 
-def analyze_question_metrics(question_text: str) -> Dict[str, Any]:
-    """Analyze question text metrics"""
-    words = question_text.split()
-    sentences = question_text.split('.')
+def analyze_text_metrics(text):
+    """Analyze basic text metrics"""
+    words = text.split()
+    sentences = text.split('.')
     
     return {
         'word_count': len(words),
+        'character_count': len(text),
         'sentence_count': len([s for s in sentences if s.strip()]),
-        'avg_word_length': np.mean([len(w) for w in words]) if words else 0,
-        'readability_estimate': 'Easy' if len(words) < 25 else ('Medium' if len(words) < 35 else 'Hard')
+        'avg_word_length': np.mean([len(word) for word in words]) if words else 0
     }
 
-def generate_improvements(question_text: str, difficulty: str, cognitive_level: str) -> list:
-    """Milestone 2: Generate improvement suggestions"""
-    improvements = []
-    metrics = analyze_question_metrics(question_text)
+def main():
+    # Header
+    st.markdown('<h1 class="main-header">Intelligent Exam Question Analysis</h1>', unsafe_allow_html=True)
+    st.markdown('<p style="text-align: center; font-size: 1.2rem; color: #666;">Milestone 1: ML-Based Question Difficulty Prediction</p>', unsafe_allow_html=True)
     
-    # Difficulty-based improvements
-    if difficulty == 'Easy':
-        improvements.append({
-            'category': 'Difficulty',
-            'suggestion': 'Consider increasing cognitive complexity. Add "why" or "how" questions to move beyond recall.',
-            'priority': 'Medium',
-            'icon': ''
-        })
-    elif difficulty == 'Hard':
-        improvements.append({
-            'category': 'Difficulty',
-            'suggestion': 'Simplify language or break into sub-questions to reduce cognitive load.',
-            'priority': 'High',
-            'icon': ''
-        })
+    # Load models
+    model, vectorizer = load_models()
     
-    # Cognitive level improvements
-    if cognitive_level in ['Remember', 'Understand']:
-        improvements.append({
-            'category': 'Cognitive Level',
-            'suggestion': f'Current level: {cognitive_level}. Consider moving to Apply/Analyze for deeper learning.',
-            'priority': 'Medium',
-            'icon': ''
-        })
+    if model is None or vectorizer is None:
+        st.error("Models not found! Please run `python train_model.py` first.")
+        st.info("Make sure you have the trained models in the `models/` directory.")
+        return
     
-    # Text metrics improvements
-    if metrics['word_count'] > 40:
-        improvements.append({
-            'category': 'Clarity',
-            'suggestion': f'Question is long ({metrics["word_count"]} words). Consider breaking into shorter, clearer questions.',
-            'priority': 'Medium',
-            'icon': ''
-        })
-    elif metrics['word_count'] < 10:
-        improvements.append({
-            'category': 'Clarity',
-            'suggestion': 'Question is very short. Add context or details to make it clearer.',
-            'priority': 'Low',
-            'icon': ''
-        })
-    
-    # Sentence complexity
-    if metrics['sentence_count'] > 3:
-        improvements.append({
-            'category': 'Structure',
-            'suggestion': 'Multiple sentences detected. Consider simplifying or using bullet points.',
-            'priority': 'Low',
-            'icon': ''
-        })
-    
-    return improvements
-
-# Main UI
-st.markdown("<h1 class='main-header'> Assessment Intelligence Platform</h1>", unsafe_allow_html=True)
-st.markdown("""
-<div style='text-align: center; margin-bottom: 2rem;'>
-    <span class='milestone-badge m1-badge'> Milestone 1: ML Analytics</span>
-    <span class='milestone-badge m2-badge'> Milestone 2: Agentic AI</span>
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown("*Unified Platform: From ML-Based Analysis to Autonomous Assessment Improvement*")
-
-# Sidebar
-with st.sidebar:
-    st.markdown("###  Navigation")
-    mode = st.radio(
-        "Select Mode:",
-        [" Question Analysis", " Batch Processing", " AI Insights", " Knowledge Base", " About"]
+    # Sidebar
+    st.sidebar.header("Navigation")
+    tab_selection = st.sidebar.radio(
+        "Choose Analysis Type:",
+        ["Single Question Analysis", "Batch Analysis", "Model Information"]
     )
-
-# Main content
-if mode == " Question Analysis":
-    st.markdown("<h2 class='sub-header'>Single Question Analysis</h2>", unsafe_allow_html=True)
     
-    col1, col2 = st.columns(2)
+    if tab_selection == "Single Question Analysis":
+        single_question_analysis(model, vectorizer)
+    elif tab_selection == "Batch Analysis":
+        batch_analysis(model, vectorizer)
+    else:
+        model_information()
+
+def single_question_analysis(model, vectorizer):
+    """Single question analysis interface"""
+    st.header("Single Question Analysis")
+    
+    # Input section
+    col1, col2 = st.columns([2, 1])
+    
     with col1:
-        question_text = st.text_area("Enter question text:", height=100, placeholder="Type your exam question here...")
-        subject = st.selectbox("Subject:", ["Mathematics", "Physics", "Computer Science", "Engineering"])
+        question_text = st.text_area(
+            "Enter your exam question:",
+            height=150,
+            placeholder="Example: Solve the quadratic equation x² + 5x + 6 = 0"
+        )
+        
+        # Optional metadata
+        with st.expander("Optional Metadata"):
+            col_meta1, col_meta2 = st.columns(2)
+            with col_meta1:
+                subject = st.selectbox(
+                    "Subject:",
+                    ["", "Mathematics", "Physics", "Computer Science", "Engineering"]
+                )
+                grade_level = st.selectbox(
+                    "Grade Level:",
+                    ["", "High School", "Undergraduate", "Graduate"]
+                )
+            with col_meta2:
+                question_type = st.selectbox(
+                    "Question Type:",
+                    ["", "Multiple Choice", "Short Answer", "Essay", "Problem Solving"]
+                )
     
     with col2:
-        cognitive_level = st.selectbox("Cognitive Level (Bloom's):", 
-                                       ["Remember", "Understand", "Apply", "Analyze", "Evaluate", "Create"])
-        grade_level = st.slider("Grade Level:", 1, 12, 10)
-    
-    if st.button(" Analyze Question", key="analyze_btn", use_container_width=True):
+        st.markdown("### Quick Stats")
         if question_text:
-            model, vectorizer = load_models()
-            if model and vectorizer:
-                # Milestone 1: Predict difficulty
-                difficulty, confidence = predict_difficulty(question_text, model, vectorizer)
-                
-                # Display M1 Results
-                st.markdown("<h3> Milestone 1: ML-Based Analysis</h3>", unsafe_allow_html=True)
-                
-                col1, col2, col3 = st.columns(3)
-                with col1:
-                    st.metric("Predicted Difficulty", difficulty)
-                with col2:
-                    st.metric("Confidence", f"{max(confidence.values()):.1%}")
-                with col3:
-                    st.metric("Cognitive Level", cognitive_level)
-                
-                # Confidence distribution
-                st.bar_chart(confidence)
-                
-                # Milestone 2: Generate improvements
-                st.markdown("<h3> Milestone 2: AI-Powered Improvements</h3>", unsafe_allow_html=True)
-                
-                improvements = generate_improvements(question_text, difficulty, cognitive_level)
-                
-                if improvements:
-                    for imp in improvements:
-                        priority_color = "" if imp['priority'] == 'High' else ("" if imp['priority'] == 'Medium' else "")
-                        st.markdown(f"""
-                        <div class='improvement-box'>
-                        {imp['icon']} **{imp['category']}** ({priority_color} {imp['priority']})<br>
-                        {imp['suggestion']}
-                        </div>
-                        """, unsafe_allow_html=True)
-                
-                # Metrics
-                st.markdown("<h3> Question Metrics</h3>", unsafe_allow_html=True)
-                metrics = analyze_question_metrics(question_text)
-                
-                col1, col2, col3, col4 = st.columns(4)
-                with col1:
-                    st.metric("Word Count", metrics['word_count'])
-                with col2:
-                    st.metric("Sentences", metrics['sentence_count'])
-                with col3:
-                    st.metric("Avg Word Length", f"{metrics['avg_word_length']:.1f}")
-                with col4:
-                    st.metric("Readability", metrics['readability_estimate'])
-
-elif mode == " Batch Processing":
-    st.markdown("<h2 class='sub-header'>Batch Question Analysis</h2>", unsafe_allow_html=True)
+            metrics = analyze_text_metrics(question_text)
+            st.metric("Word Count", metrics['word_count'])
+            st.metric("Characters", metrics['character_count'])
+            st.metric("Sentences", metrics['sentence_count'])
+            st.metric("Avg Word Length", f"{metrics['avg_word_length']:.1f}")
     
-    uploaded_file = st.file_uploader("Upload CSV with questions:", type="csv")
-    
-    if uploaded_file and st.button("⚡ Process Batch", use_container_width=True):
-        df = pd.read_csv(uploaded_file)
-        model, vectorizer = load_models()
+    # Analysis button
+    if st.button("Analyze Question", type="primary", use_container_width=True):
+        if not question_text.strip():
+            st.warning("Please enter a question to analyze.")
+            return
         
-        if model and vectorizer:
-            results = []
-            progress_bar = st.progress(0)
-            status_text = st.empty()
+        with st.spinner("Analyzing question..."):
+            result = predict_difficulty(question_text, model, vectorizer)
             
-            for idx, row in df.iterrows():
-                question = row.get('question_text', '')
-                difficulty, confidence = predict_difficulty(question, model, vectorizer)
+            if result:
+                # Results section
+                st.markdown("---")
+                st.header("Analysis Results")
                 
-                results.append({
-                    'question': question[:50],
-                    'difficulty': difficulty,
-                    'confidence': max(confidence.values()) if confidence else 0
+                # Main prediction
+                col1, col2, col3 = st.columns(3)
+                
+                with col1:
+                    st.markdown(f"""
+                    <div class="metric-card">
+                        <h3>Predicted Difficulty</h3>
+                        <h2>{result['difficulty']}</h2>
+                        <p>Confidence: {result['confidence']:.1%}</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                with col2:
+                    st.markdown(f"""
+                    <div class="metric-card">
+                        <h3>Confidence Score</h3>
+                        <h2>{result['confidence']:.1%}</h2>
+                        <p>Model certainty</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                with col3:
+                    metrics = analyze_text_metrics(question_text)
+                    complexity_score = min(100, (metrics['word_count'] * 2 + metrics['avg_word_length'] * 5))
+                    st.markdown(f"""
+                    <div class="metric-card">
+                        <h3>Complexity Score</h3>
+                        <h2>{complexity_score:.0f}/100</h2>
+                        <p>Text complexity</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                # Probability distribution chart
+                st.subheader("Probability Distribution")
+                prob_df = pd.DataFrame({
+                    'Difficulty': list(result['probabilities'].keys()),
+                    'Probability': list(result['probabilities'].values())
                 })
                 
-                progress_bar.progress((idx + 1) / len(df))
-                status_text.text(f"Processing: {idx + 1}/{len(df)}")
-            
-            results_df = pd.DataFrame(results)
-            st.dataframe(results_df, use_container_width=True)
-            
-            # Summary statistics
-            st.markdown("<h3> Summary Statistics</h3>", unsafe_allow_html=True)
-            col1, col2, col3, col4 = st.columns(4)
-            with col1:
-                st.metric("Total Questions", len(results_df))
-            with col2:
-                st.metric("Avg Confidence", f"{results_df['confidence'].mean():.1%}")
-            with col3:
-                easy_count = len(results_df[results_df['difficulty'] == 'Easy'])
-                st.metric("Easy Questions", easy_count)
-            with col4:
-                hard_count = len(results_df[results_df['difficulty'] == 'Hard'])
-                st.metric("Hard Questions", hard_count)
-            
-            # Difficulty distribution
-            st.bar_chart(results_df['difficulty'].value_counts())
-            
-            # Download results
-            csv = results_df.to_csv(index=False)
-            st.download_button(" Download Results", csv, "assessment_results.csv", "text/csv")
+                fig = px.bar(
+                    prob_df, 
+                    x='Difficulty', 
+                    y='Probability',
+                    color='Difficulty',
+                    color_discrete_map={'Easy': '#2ecc71', 'Medium': '#f39c12', 'Hard': '#e74c3c'},
+                    title="Difficulty Prediction Probabilities"
+                )
+                fig.update_layout(showlegend=False, height=400)
+                st.plotly_chart(fig, use_container_width=True)
+                
+                # Recommendations
+                st.subheader("Recommendations")
+                if result['difficulty'] == "Easy":
+                    st.markdown("""
+                    <div class="success-box">
+                        <strong>Easy Question Detected</strong><br>
+                        • Suitable for introductory assessments<br>
+                        • Good for building student confidence<br>
+                        • Consider for warm-up questions
+                    </div>
+                    """, unsafe_allow_html=True)
+                elif result['difficulty'] == "Medium":
+                    st.markdown("""
+                    <div class="warning-box">
+                        <strong>Medium Difficulty Question</strong><br>
+                        • Appropriate for regular assessments<br>
+                        • Good balance of challenge and accessibility<br>
+                        • Suitable for most students
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown("""
+                    <div style="background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 0.25rem; padding: 1rem; margin: 1rem 0;">
+                        <strong>Hard Question Detected</strong><br>
+                        • Challenging question for advanced students<br>
+                        • Consider for final exams or advanced courses<br>
+                        • May require additional preparation time
+                    </div>
+                    """, unsafe_allow_html=True)
 
-elif mode == " AI Insights":
-    st.markdown("<h2 class='sub-header'>AI-Powered Assessment Insights</h2>", unsafe_allow_html=True)
+def batch_analysis(model, vectorizer):
+    """Batch analysis interface"""
+    st.header("Batch Question Analysis")
     
-    st.markdown("""
-    ###  Milestone 2: Agentic AI Features
+    st.info("Upload a CSV file with a 'question_text' column to analyze multiple questions at once.")
     
-    This section demonstrates autonomous AI reasoning for assessment improvement:
+    # File upload
+    uploaded_file = st.file_uploader(
+        "Choose a CSV file",
+        type=['csv'],
+        help="CSV file should have a 'question_text' column"
+    )
     
-    **Key Capabilities:**
-    -  Autonomous question analysis
-    -  Intelligent improvement suggestions
-    -  Pedagogical knowledge retrieval
-    -  Learning objective alignment
-    -  Assessment quality metrics
-    """)
+    if uploaded_file is not None:
+        try:
+            df = pd.read_csv(uploaded_file)
+            
+            if 'question_text' not in df.columns:
+                st.error("CSV file must contain a 'question_text' column.")
+                return
+            
+            st.success(f"Loaded {len(df)} questions from CSV file.")
+            
+            # Show preview
+            with st.expander("Preview Data"):
+                st.dataframe(df.head())
+            
+            if st.button("Analyze All Questions", type="primary"):
+                with st.spinner("Analyzing questions..."):
+                    results = []
+                    progress_bar = st.progress(0)
+                    
+                    for i, question in enumerate(df['question_text']):
+                        if pd.notna(question) and question.strip():
+                            result = predict_difficulty(str(question), model, vectorizer)
+                            if result:
+                                results.append({
+                                    'question_text': question,
+                                    'predicted_difficulty': result['difficulty'],
+                                    'confidence': result['confidence'],
+                                    'easy_prob': result['probabilities']['Easy'],
+                                    'medium_prob': result['probabilities']['Medium'],
+                                    'hard_prob': result['probabilities']['Hard']
+                                })
+                            else:
+                                results.append({
+                                    'question_text': question,
+                                    'predicted_difficulty': 'Error',
+                                    'confidence': 0,
+                                    'easy_prob': 0,
+                                    'medium_prob': 0,
+                                    'hard_prob': 0
+                                })
+                        progress_bar.progress((i + 1) / len(df))
+                    
+                    results_df = pd.DataFrame(results)
+                    
+                    # Display results
+                    st.header("Batch Analysis Results")
+                    
+                    # Summary statistics
+                    col1, col2, col3, col4 = st.columns(4)
+                    
+                    with col1:
+                        st.metric("Total Questions", len(results_df))
+                    with col2:
+                        easy_count = len(results_df[results_df['predicted_difficulty'] == 'Easy'])
+                        st.metric("Easy Questions", easy_count)
+                    with col3:
+                        medium_count = len(results_df[results_df['predicted_difficulty'] == 'Medium'])
+                        st.metric("Medium Questions", medium_count)
+                    with col4:
+                        hard_count = len(results_df[results_df['predicted_difficulty'] == 'Hard'])
+                        st.metric("Hard Questions", hard_count)
+                    
+                    # Distribution chart
+                    difficulty_counts = results_df['predicted_difficulty'].value_counts()
+                    fig = px.pie(
+                        values=difficulty_counts.values,
+                        names=difficulty_counts.index,
+                        title="Difficulty Distribution",
+                        color_discrete_map={'Easy': '#2ecc71', 'Medium': '#f39c12', 'Hard': '#e74c3c'}
+                    )
+                    st.plotly_chart(fig, use_container_width=True)
+                    
+                    # Results table
+                    st.subheader("Detailed Results")
+                    st.dataframe(results_df, use_container_width=True)
+                    
+                    # Download results
+                    csv = results_df.to_csv(index=False)
+                    st.download_button(
+                        label="Download Results as CSV",
+                        data=csv,
+                        file_name="question_analysis_results.csv",
+                        mime="text/csv"
+                    )
+                    
+        except Exception as e:
+            st.error(f"Error processing file: {str(e)}")
+
+def model_information():
+    """Display model information"""
+    st.header("Model Information")
     
+    # Model details
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("####  Question Analysis Workflow")
-        st.markdown("""
-        1. **Analyze** - Extract metrics & predict difficulty
-        2. **Retrieve** - Query pedagogical knowledge base
-        3. **Reason** - Generate improvement suggestions
-        4. **Validate** - Check quality & alignment
-        5. **Output** - Structured recommendations
+        st.subheader("Model Details")
+        st.info("""
+        **Algorithm**: Logistic Regression  
+        **Features**: TF-IDF Vectorization (5,000 features)  
+        **Training Data**: 5,000 exam questions  
+        **Accuracy**: ~31.4%  
+        **Classes**: Easy, Medium, Hard
+        """)
+        
+        st.subheader("Performance Metrics")
+        st.info("""
+        **Precision**: 0.31 (overall)  
+        **Recall**: 0.31 (overall)  
+        **F1-Score**: 0.31 (overall)  
+        **Cross-Validation**: Stratified 80-20 split
         """)
     
     with col2:
-        st.markdown("####  Supported Features")
-        st.markdown("""
-        - Bloom's Taxonomy alignment
-        - Difficulty calibration
-        - Learning gap identification
-        - Question discrimination analysis
-        - Readability assessment
-        - Cognitive load evaluation
+        st.subheader("Technical Specifications")
+        st.info("""
+        **Preprocessing**: Text cleaning, tokenization  
+        **Vectorization**: TF-IDF (1-2 grams)  
+        **Stop Words**: English  
+        **Max Features**: 5,000  
+        **Model Type**: Multiclass classification
         """)
-
-elif mode == " Knowledge Base":
-    st.markdown("<h2 class='sub-header'>Pedagogical Knowledge Base</h2>", unsafe_allow_html=True)
-    
-    st.markdown("###  Assessment Design Best Practices")
-    
-    for topic, content in PEDAGOGICAL_KNOWLEDGE.items():
-        with st.expander(f"📌 {topic}"):
-            st.info(content)
-
-elif mode == " About":
-    st.markdown("<h2 class='sub-header'>About This Platform</h2>", unsafe_allow_html=True)
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("""
-        ###  Milestone 1: ML-Based Analytics
         
-        **Status**:  Complete
-        
-        - ML-based difficulty prediction
-        - TF-IDF vectorization (5,000 features)
-        - Logistic Regression model (31.4% accuracy)
-        - Real-time predictions (< 0.1s)
-        - Batch processing support
-        - CSV export functionality
+        st.subheader("Dataset Information")
+        st.info("""
+        **Total Questions**: 5,000  
+        **Subjects**: Mathematics, Physics, CS, Engineering  
+        **Difficulty Distribution**: Balanced  
+        **Source**: Educational assessment data
         """)
     
-    with col2:
-        st.markdown("""
-        ###  Milestone 2: Agentic AI
-        
-        **Status**:  Complete
-        
-        - LangGraph-based workflow
-        - RAG integration
-        - Pedagogical knowledge base
-        - Autonomous improvement generation
-        - State management
-        - Structured recommendations
-        """)
-    
-    st.markdown("---")
-    
-    st.markdown("""
-    ###  Project Statistics
-    
-    | Metric | Value |
-    |--------|-------|
-    | Questions Analyzed | 5,000 |
-    | Subjects Covered | 4 |
-    | ML Models Trained | 3 |
-    | Best Accuracy | 31.4% |
-    | Knowledge Base Docs | 8 |
-    | Deployment Status |  Live |
-    
-    ###  Links
-    
-    - **Live Demo**: https://intelligent-exam-question-analysis-agentic-assessment-design-z.streamlit.app/
-    - **GitHub**: https://github.com/ArPriCode/INTELLIGENT-EXAM-QUESTION-ANALYSIS-AGENTIC-ASSESSMENT-DESIGN
-    - **Documentation**: See README.md
+    # Model insights
+    st.subheader("Model Insights")
+    st.warning("""
+    **Note**: This model provides difficulty predictions based on text analysis. 
+    Results should be used as guidance alongside educator expertise. 
+    The model may have limitations with domain-specific terminology or context.
     """)
     
-    st.markdown("---")
+    # Usage tips
+    st.subheader("Usage Tips")
     st.markdown("""
-    **Disclaimer**: This system provides AI-assisted assessment analysis. 
-    Educators should review all suggestions and apply professional judgment.
+    1. **Question Quality**: Ensure questions are well-formatted and clear
+    2. **Context Matters**: Consider subject domain and student level
+    3. **Confidence Scores**: Pay attention to prediction confidence
+    4. **Batch Processing**: Use CSV upload for analyzing multiple questions
+    5. **Validation**: Always validate predictions with educational expertise
     """)
 
-# Footer
-st.markdown("---")
-st.markdown("""
-<div style='text-align: center; color: #666; font-size: 0.9rem;'>
-    <p> Intelligent Exam Question Analysis & Agentic Assessment Design</p>
-    <p>Made with  for Education | Version 2.0.0 | Status:  Production Ready</p>
-</div>
-""", unsafe_allow_html=True)
+if __name__ == "__main__":
+    main()

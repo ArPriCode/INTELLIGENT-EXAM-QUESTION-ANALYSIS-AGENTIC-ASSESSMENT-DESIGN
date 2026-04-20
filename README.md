@@ -54,10 +54,10 @@
 
 This project implements a **two-milestone educational analytics system** that transforms from classical ML-based question analysis to an autonomous agentic AI assessment designer.
 
-###  Milestone 1: ML-Based Exam Question Analytics  COMPLETE
+###  Milestone 1: ML-Based Exam Question Analytics ✅ COMPLETE
 Applies classical machine learning and NLP techniques to analyze exam questions and student responses, predicting difficulty levels and identifying learning gaps.
 
-**Status**:  Production Ready | **Accuracy**: 31.4% | **Deployment**: Live on Streamlit Cloud
+**Status**: ✅ Production Ready | **Accuracy**: 31.4% | **App**: `app.py` | **Deployment**: Ready
 
 **Key Achievements**:
 - Trained 3 ML models (Logistic Regression, Decision Tree, Random Forest)
@@ -66,10 +66,10 @@ Applies classical machine learning and NLP techniques to analyze exam questions 
 - Batch processing for multiple questions
 - Interactive Streamlit dashboard
 
-###  Milestone 2: Agentic AI Assessment Design Assistant  COMPLETE
+###  Milestone 2: Agentic AI Assessment Design Assistant ✅ COMPLETE
 Extends the system into an agent-based AI application using **LangGraph** that autonomously reasons about assessment quality, retrieves pedagogical best practices, and generates structured improvements.
 
-**Status**:  Production Ready | **Architecture**: LangGraph + RAG | **Knowledge Base**: 8 pedagogical documents
+**Status**: ✅ Production Ready | **Architecture**: LangGraph + RAG | **App**: `app_milestone2.py` | **Knowledge Base**: 3 pedagogical documents
 
 **Key Achievements**:
 - LangGraph-based agentic workflow with state management
