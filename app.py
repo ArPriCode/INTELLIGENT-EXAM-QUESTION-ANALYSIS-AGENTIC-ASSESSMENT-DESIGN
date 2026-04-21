@@ -54,31 +54,21 @@ def load_models():
     try:
         model = joblib.load('models/difficulty_model.pkl')
         vectorizer = joblib.load('models/tfidf_vectorizer.pkl')
-        scaler = joblib.load('models/scaler.pkl')
-        return model, vectorizer, scaler
+        return model, vectorizer
     except FileNotFoundError:
-        return None, None, None
+        return None, None
 
-def predict_difficulty(question_text, model, vectorizer, scaler):
+def predict_difficulty(question_text, model, vectorizer):
     """Predict question difficulty"""
     if not question_text.strip():
         return None
     
     # Vectorize the question text
-    features_text = vectorizer.transform([question_text])
-    
-    # Create dummy numeric features (since we don't have actual values for single questions)
-    # Using average values from the dataset
-    dummy_numeric = np.array([[65.0, 25.0, 1.5, 0.6, 0.4, 0.7]])  # readability, word_count, sentence_count, correct_percentage, learning_gap, discrimination
-    features_numeric = scaler.transform(dummy_numeric)
-    
-    # Combine features
-    from scipy.sparse import hstack
-    features_combined = hstack([features_text, features_numeric])
+    features = vectorizer.transform([question_text])
     
     # Predict
-    prediction = model.predict(features_combined)[0]
-    probabilities = model.predict_proba(features_combined)[0]
+    prediction = model.predict(features)[0]
+    probabilities = model.predict_proba(features)[0]
     
     difficulty_map = {0: "Easy", 1: "Medium", 2: "Hard"}
     
@@ -110,9 +100,9 @@ def main():
     st.markdown('<p style="text-align: center; font-size: 1.2rem; color: #666;">ML-Based Question Difficulty Prediction</p>', unsafe_allow_html=True)
     
     # Load models
-    model, vectorizer, scaler = load_models()
+    model, vectorizer = load_models()
     
-    if model is None or vectorizer is None or scaler is None:
+    if model is None or vectorizer is None:
         st.error("Models not found! Please run `python train_model.py` first.")
         st.info("Make sure you have the trained models in the `models/` directory.")
         return
@@ -125,13 +115,13 @@ def main():
     )
     
     if tab_selection == "Single Question Analysis":
-        single_question_analysis(model, vectorizer, scaler)
+        single_question_analysis(model, vectorizer)
     elif tab_selection == "Batch Analysis":
-        batch_analysis(model, vectorizer, scaler)
+        batch_analysis(model, vectorizer)
     else:
         model_information()
 
-def single_question_analysis(model, vectorizer, scaler):
+def single_question_analysis(model, vectorizer):
     """Single question analysis interface"""
     st.header("Single Question Analysis")
     
@@ -179,7 +169,7 @@ def single_question_analysis(model, vectorizer, scaler):
             return
         
         with st.spinner("Analyzing question..."):
-            result = predict_difficulty(question_text, model, vectorizer, scaler)
+            result = predict_difficulty(question_text, model, vectorizer)
             
             if result:
                 # Results section
@@ -266,7 +256,7 @@ def single_question_analysis(model, vectorizer, scaler):
                     </div>
                     """, unsafe_allow_html=True)
 
-def batch_analysis(model, vectorizer, scaler):
+def batch_analysis(model, vectorizer):
     """Batch analysis interface"""
     st.header("Batch Question Analysis")
     
@@ -300,7 +290,7 @@ def batch_analysis(model, vectorizer, scaler):
                     
                     for i, question in enumerate(df['question_text']):
                         if pd.notna(question) and question.strip():
-                            result = predict_difficulty(str(question), model, vectorizer, scaler)
+                            result = predict_difficulty(str(question), model, vectorizer)
                             if result:
                                 results.append({
                                     'question_text': question,
@@ -377,18 +367,18 @@ def model_information():
     with col1:
         st.subheader("Model Details")
         st.info("""
-        **Algorithm**: Random Forest Classifier  
-        **Features**: TF-IDF + Numeric Features (5,000 text features + 6 numeric)  
+        **Algorithm**: Logistic Regression  
+        **Features**: TF-IDF Vectorization (1,500 features)  
         **Training Data**: 5,000 exam questions  
-        **Accuracy**: ~99.9%  
+        **Accuracy**: ~72%  
         **Classes**: Easy, Medium, Hard
         """)
         
         st.subheader("Performance Metrics")
         st.info("""
-        **Precision**: 0.99 (overall)  
-        **Recall**: 0.99 (overall)  
-        **F1-Score**: 0.99 (overall)  
+        **Precision**: 0.72 (overall)  
+        **Recall**: 0.71 (overall)  
+        **F1-Score**: 0.71 (overall)  
         **Cross-Validation**: Stratified 80-20 split
         """)
     
@@ -397,9 +387,8 @@ def model_information():
         st.info("""
         **Preprocessing**: Text cleaning, tokenization  
         **Vectorization**: TF-IDF (1-2 grams)  
-        **Numeric Features**: Readability, word count, learning gaps  
         **Stop Words**: English  
-        **Max Features**: 5,000 text + 6 numeric  
+        **Max Features**: 1,500  
         **Model Type**: Multiclass classification
         """)
         

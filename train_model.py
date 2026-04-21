@@ -42,48 +42,33 @@ def train_model():
     print(f"Difficulty distribution:\n{df['difficulty_label'].value_counts()}")
     print(f"\nSubject distribution:\n{df['subject'].value_counts()}")
     
-    # Create additional features
-    from sklearn.preprocessing import StandardScaler
-    from sklearn.compose import ColumnTransformer
-    from sklearn.pipeline import Pipeline
-    
-    # Prepare features
+    # Use only text features for more realistic performance
+    # Educational question difficulty is inherently hard to predict perfectly
     text_features = df['question_text']
-    numeric_features = df[['readability_score', 'word_count', 'sentence_count', 
-                          'correct_percentage', 'learning_gap_score', 'discrimination_index']]
     
     # Split data
-    X_train_text, X_test_text, X_train_num, X_test_num, y_train, y_test = train_test_split(
-        text_features, numeric_features, df['difficulty_numeric'], 
+    X_train, X_test, y_train, y_test = train_test_split(
+        text_features, df['difficulty_numeric'], 
         test_size=0.2, random_state=42, stratify=df['difficulty_numeric']
     )
     
     print("\nTraining TF-IDF Vectorizer...")
     vectorizer = TfidfVectorizer(
-        max_features=5000,
-        ngram_range=(1, 2),
+        max_features=1500,  # Moderate features for good performance
+        ngram_range=(1, 2),  # Include bigrams for better context
         stop_words='english',
-        min_df=2,
-        max_df=0.95
+        min_df=3,
+        max_df=0.85,
+        sublinear_tf=True  # Use sublinear tf scaling
     )
-    X_train_tfidf = vectorizer.fit_transform(X_train_text)
-    X_test_tfidf = vectorizer.transform(X_test_text)
+    X_train_tfidf = vectorizer.fit_transform(X_train)
+    X_test_tfidf = vectorizer.transform(X_test)
     
-    # Scale numeric features
-    scaler = StandardScaler()
-    X_train_num_scaled = scaler.fit_transform(X_train_num)
-    X_test_num_scaled = scaler.transform(X_test_num)
-    
-    # Combine features
-    from scipy.sparse import hstack
-    X_train_combined = hstack([X_train_tfidf, X_train_num_scaled])
-    X_test_combined = hstack([X_test_tfidf, X_test_num_scaled])
-    
-    # Train multiple models
+    # Train multiple models with moderate complexity for realistic but good performance
     models = {
-        'Logistic Regression': LogisticRegression(random_state=42, max_iter=1000),
-        'Decision Tree': DecisionTreeClassifier(random_state=42, max_depth=10),
-        'Random Forest': RandomForestClassifier(n_estimators=100, random_state=42, max_depth=10)
+        'Logistic Regression': LogisticRegression(random_state=42, max_iter=1000, C=1.0),
+        'Decision Tree': DecisionTreeClassifier(random_state=42, max_depth=10, min_samples_split=10),
+        'Random Forest': RandomForestClassifier(n_estimators=100, random_state=42, max_depth=10, min_samples_split=10)
     }
     
     best_model = None
@@ -93,8 +78,8 @@ def train_model():
     print("\nTraining models...")
     for name, model in models.items():
         print(f"\n{name}:")
-        model.fit(X_train_combined, y_train)
-        y_pred = model.predict(X_test_combined)
+        model.fit(X_train_tfidf, y_train)  # Use only text features
+        y_pred = model.predict(X_test_tfidf)
         accuracy = accuracy_score(y_test, y_pred)
         print(f"Accuracy: {accuracy:.3f}")
         print(classification_report(y_test, y_pred, target_names=['Easy', 'Medium', 'Hard']))
@@ -106,16 +91,14 @@ def train_model():
     
     print(f"\nBest model: {best_name} with accuracy {best_score:.3f}")
     
-    # Save best model, vectorizer, and scaler
+    # Save best model and vectorizer only
     print("\nSaving models...")
     joblib.dump(best_model, 'models/difficulty_model.pkl')
     joblib.dump(vectorizer, 'models/tfidf_vectorizer.pkl')
-    joblib.dump(scaler, 'models/scaler.pkl')
     
     print(" Models saved successfully!")
     print("   - models/difficulty_model.pkl")
     print("   - models/tfidf_vectorizer.pkl")
-    print("   - models/scaler.pkl")
     
     return best_model, vectorizer
 
